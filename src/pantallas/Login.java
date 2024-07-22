@@ -1,4 +1,8 @@
+package pantallas;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
     private JTextField UserText;
@@ -10,6 +14,13 @@ public class Login extends JFrame {
     public Login() {
         super("Inicio de Sesion");
         setContentPane(loginPanel);
+        crearCuentaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Registro regis = new Registro();
+                regis.iniciar();
+            }
+        });
     }
 
     public void iniciar(){
