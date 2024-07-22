@@ -1,4 +1,4 @@
-package pantallas;
+package pantallasPrincipales;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
