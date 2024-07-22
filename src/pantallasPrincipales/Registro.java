@@ -24,6 +24,7 @@ public class Registro extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Login Log2 = new Login();
                 Log2.iniciar();
+                dispose();
             }
         });
     }

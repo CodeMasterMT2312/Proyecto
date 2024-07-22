@@ -19,6 +19,15 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Registro regis = new Registro();
                 regis.iniciar();
+                dispose();
+            }
+        });
+        iniciarSesionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cartelera cart = new Cartelera();
+                cart.iniciar();
+                dispose();
             }
         });
     }
