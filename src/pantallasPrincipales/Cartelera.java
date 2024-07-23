@@ -1,6 +1,8 @@
 package pantallasPrincipales;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Cartelera extends JFrame {
     private JPanel CarteleraPanel;
@@ -50,6 +52,14 @@ public class Cartelera extends JFrame {
         super("Cartelera");
         setContentPane(CarteleraPanel);
 
+        reservarButacasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Reserva reserva1 = new Reserva();
+                reserva1.iniciar();
+                dispose();
+            }
+        });
     }
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
