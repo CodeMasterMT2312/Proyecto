@@ -1,14 +1,11 @@
-import pantallasPrincipales.AdminPantallas.MenuAdmin;
+import pantallasPrincipales.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        MenuAdmin menuAdmin = new MenuAdmin();
-        menuAdmin.iniciar();
-
-        //Login log = new Login();
-        //log.iniciar();
+        Login log = new Login();
+        log.iniciar();
 
     }
 }
