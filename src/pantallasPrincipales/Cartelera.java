@@ -18,7 +18,9 @@ public class Cartelera extends JFrame {
         adquirirBoletosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Reserva reser = new Reserva();
+                reser.iniciar();
+                dispose();
             }
         });
     }
