@@ -1,63 +1,24 @@
 package pantallasPrincipales;
+import pantallasPrincipales.AdminPantallas.MenuAdmin;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+
 
 public class Cartelera extends JFrame {
+    private JButton adquirirBoletosButton;
+    private JTextArea CarteleraText;
     private JPanel CarteleraPanel;
-    private JButton LOGOUTButton;
-    private JButton reservarButacasButton;
-    private JTextArea SinopsisText1;
-    private JButton reservarButacasButton1;
-    private JTextArea SinopsisText2;
-    private JButton reservarButacasButton2;
-    private JTextArea SinopsisText3;
-    private JButton reservarButacasButton3;
-    private JButton reservarButacasButton4;
-    private JButton reservarButacasButton5;
-    private JButton reservarButacasButton6;
-    private JButton reservarButacasButton7;
-    private JTextArea SinopsisText4;
-    private JTextArea SinopsisText5;
-    private JTextArea SinopsisText6;
-    private JTextArea SinopsisText7;
-    private JTextArea SinopsisText8;
-    private JLabel LabelTitulo1;
-    private JLabel LabelTitulo2;
-    private JLabel LabelTitulo3;
-    private JLabel LabelTitulo4;
-    private JLabel LabelTitulo5;
-    private JLabel LabelTitulo6;
-    private JLabel LabelTitulo7;
-    private JLabel LabelTitulo8;
-    private JLabel RestricLabel1;
-    private JLabel RestricLabel2;
-    private JLabel RestricLabel3;
-    private JLabel RestricLabel4;
-    private JLabel RestricLabel5;
-    private JLabel RestricLabel6;
-    private JLabel RestricLabel7;
-    private JLabel RestricLabel8;
-    private JLabel DuracionLabel1;
-    private JLabel DuracionLabel2;
-    private JLabel DuracionLabel3;
-    private JLabel DuracionLabel4;
-    private JLabel DuracionLabel5;
-    private JLabel DuracionLabel6;
-    private JLabel DuracionLabel7;
-    private JLabel DuracionLabel8;
 
     public Cartelera() {
         super("Cartelera");
         setContentPane(CarteleraPanel);
-
-        reservarButacasButton.addActionListener(new ActionListener() {
+        adquirirBoletosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Reserva reserva1 = new Reserva();
-                reserva1.iniciar();
-                dispose();
+
             }
         });
     }
@@ -65,5 +26,54 @@ public class Cartelera extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
         setVisible(true);
+    }
+
+    public void MostrarCartelera() throws SQLException {
+        CONEXION c = new CONEXION();
+        Connection conn = c.conexion();
+        try{
+            if(conn != null){
+                String query = "Select titulo,descripcion,genero,duracion,fecha_estreno,clasificacion from Peliculas;";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                CarteleraText.setText("");
+                while(rs.next()){
+                    CarteleraText.append("--------------------\n");
+                    CarteleraText.append("Título: " + rs.getString("titulo") + "\n");
+                    CarteleraText.append("Género: " + rs.getString("genero") + "\n");
+                    CarteleraText.append("Duración: " + rs.getString("duracion") + " minutos\n");
+                    CarteleraText.append("Fecha de estreno: " + rs.getString("fecha_estreno") + "\n");
+                    CarteleraText.append("Clasificación: " + rs.getString("clasificacion") + "\n\n");
+                    // Formatear la sinopsis para que se divida en varias líneas
+                    String sinopsis = rs.getString("descripcion");
+                    String formattedSinopsis = formatTextToMultiline(sinopsis, 80); // 80 es el número máximo de caracteres por línea
+                    CarteleraText.append("Sinopsis:\n" + formattedSinopsis + "\n");
+                }
+            }
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println("Error al conectar a la base de datos: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    // Método para formatear texto en varias líneas
+    private String formatTextToMultiline(String text, int maxLineLength) {
+        StringBuilder formattedText = new StringBuilder();
+        String[] words = text.split(" ");
+        int currentLineLength = 0;
+
+        for (String word : words) {
+            // Si agregar la siguiente palabra excede la longitud máxima de línea, agrega un salto de línea
+            if (currentLineLength + word.length() > maxLineLength) {
+                formattedText.append("\n");
+                currentLineLength = 0;
+            }
+            // Agrega la palabra al texto formateado
+            formattedText.append(word).append(" ");
+            currentLineLength += word.length() + 1; // +1 para el espacio
+        }
+
+        return formattedText.toString().trim();
     }
 }

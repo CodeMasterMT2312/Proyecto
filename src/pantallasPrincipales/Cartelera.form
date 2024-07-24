@@ -1,497 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="pantallasPrincipales.Cartelera">
-  <grid id="27dc6" binding="CarteleraPanel" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="CarteleraPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="688" height="2545"/>
+      <xy x="20" y="20" width="514" height="400"/>
     </constraints>
-    <properties>
-      <background color="-1"/>
-    </properties>
+    <properties/>
     <border type="none"/>
     <children>
-      <component id="f1cb0" class="javax.swing.JLabel">
+      <component id="8a46d" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="CARTELERA"/>
         </properties>
       </component>
-      <component id="e36b0" class="javax.swing.JLabel">
+      <scrollpane id="fb389">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="© 2024 NovaCine. Todos los derechos reservados. Diseñado por Mathias Teran. "/>
-        </properties>
-      </component>
-      <scrollpane id="6a191">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="3ebda" layout-manager="GridLayoutManager" row-count="40" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="302b1" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints/>
-            <properties>
-              <background color="-1"/>
-            </properties>
+            <properties/>
             <border type="none"/>
             <children>
-              <component id="e3ad3" class="javax.swing.JLabel">
+              <component id="49b55" class="javax.swing.JButton" binding="adquirirBoletosButton" default-binding="true">
                 <constraints>
-                  <grid row="0" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <icon value="img_ProyectoFinal/PeliculaMiedo1.png"/>
-                  <text value=""/>
+                  <text value="Adquirir Boletos"/>
                 </properties>
               </component>
-              <component id="e7f45" class="javax.swing.JLabel" binding="LabelTitulo1">
+              <component id="74c5" class="javax.swing.JTextArea" binding="CarteleraText">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Sombras en el Pasillo"/>
-                </properties>
-              </component>
-              <component id="2450b" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="5" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <icon value="img_ProyectoFinal/PeliculaComedia1.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="60100" class="javax.swing.JLabel" binding="LabelTitulo2">
-                <constraints>
-                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Risas en la Ciudad"/>
-                </properties>
-              </component>
-              <component id="e8453" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="10" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <icon value="img_ProyectoFinal/El Ojo del Destino(peli superHeroes)1.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="26aad" class="javax.swing.JLabel" binding="LabelTitulo3">
-                <constraints>
-                  <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="El Vigilante"/>
-                </properties>
-              </component>
-              <component id="aba76" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="15" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <icon value="img_ProyectoFinal/PeliAventuras1.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="42974" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="20" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <icon value="img_ProyectoFinal/peliAnime1.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="f7f89" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="25" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <icon value="img_ProyectoFinal/PeliPiratas1.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="80bd4" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="30" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <icon value="img_ProyectoFinal/pelihistoria1.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="4aaa0" class="javax.swing.JLabel" binding="LabelTitulo4">
-                <constraints>
-                  <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Horizontes Desconocidos"/>
-                </properties>
-              </component>
-              <component id="71e17" class="javax.swing.JLabel" binding="LabelTitulo5">
-                <constraints>
-                  <grid row="20" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Espadas y Llamas"/>
-                </properties>
-              </component>
-              <component id="aec47" class="javax.swing.JLabel" binding="LabelTitulo6">
-                <constraints>
-                  <grid row="25" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Tesoros del Horizonte"/>
-                </properties>
-              </component>
-              <component id="50774" class="javax.swing.JLabel" binding="LabelTitulo7">
-                <constraints>
-                  <grid row="30" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Caminos de la Historia"/>
-                </properties>
-              </component>
-              <component id="a87b1" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="35" column="0" row-span="5" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <icon value="img_ProyectoFinal/peliRomance1.png"/>
-                  <text value=""/>
-                </properties>
-              </component>
-              <component id="7174f" class="javax.swing.JLabel" binding="LabelTitulo8">
-                <constraints>
-                  <grid row="35" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Amor en el Crepúsculo"/>
-                </properties>
-              </component>
-              <component id="d3a26" class="javax.swing.JLabel" binding="RestricLabel1">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Clasificación R"/>
-                </properties>
-              </component>
-              <component id="a49f8" class="javax.swing.JLabel" binding="DuracionLabel1">
-                <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Duración: 1 hora 45 minutos "/>
-                </properties>
-              </component>
-              <component id="38781" class="javax.swing.JButton" binding="reservarButacasButton" default-binding="true">
-                <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <horizontalAlignment value="0"/>
-                  <text value="Reservar Butacas"/>
-                </properties>
-              </component>
-              <component id="8c769" class="javax.swing.JTextArea" binding="SinopsisText1">
-                <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="50"/>
                   </grid>
                 </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <foreground color="-16777216"/>
-                  <text value="Sinopsis: Una familia se muda a una casa victoriana&#10;y descubre que está habitada por espíritus&#10;malignos. Deben desentrañar la oscura historia de&#10;la casa antes de que los fantasmas los atrapen para&#10;siempre."/>
-                </properties>
-              </component>
-              <component id="557b1" class="javax.swing.JLabel" binding="RestricLabel2">
-                <constraints>
-                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Clasificación PG-13"/>
-                </properties>
-              </component>
-              <component id="660c6" class="javax.swing.JLabel" binding="DuracionLabel2">
-                <constraints>
-                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Duración: 1 hora 30 minutos "/>
-                </properties>
-              </component>
-              <component id="132f0" class="javax.swing.JButton" binding="reservarButacasButton1" default-binding="true">
-                <constraints>
-                  <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Reservar Butacas"/>
-                </properties>
-              </component>
-              <component id="f1c6a" class="javax.swing.JTextArea" binding="SinopsisText2">
-                <constraints>
-                  <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <enabled value="true"/>
-                  <foreground color="-16777216"/>
-                  <text value="Sinopsis: “Risas en la Ciudad” sigue a un grupo de&#10;amigos que se embarcan en una serie de aventuras&#10;hilarantes mientras intentan resolver un misterio&#10;en su ciudad. Entre malentendidos cómicos y&#10;situaciones absurdas, su amistad se fortalece y&#10;descubren que la risa es el mejor remedio para&#10;cualquier problema"/>
-                </properties>
-              </component>
-              <component id="c006c" class="javax.swing.JLabel" binding="RestricLabel3">
-                <constraints>
-                  <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Clasificación PG-13"/>
-                </properties>
-              </component>
-              <component id="7cb45" class="javax.swing.JLabel" binding="DuracionLabel3">
-                <constraints>
-                  <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Duración: 2 horas "/>
-                </properties>
-              </component>
-              <component id="1f3ae" class="javax.swing.JButton" binding="reservarButacasButton2" default-binding="true">
-                <constraints>
-                  <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Reservar Butacas"/>
-                </properties>
-              </component>
-              <component id="bfd18" class="javax.swing.JTextArea" binding="SinopsisText3">
-                <constraints>
-                  <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <foreground color="-16777216"/>
-                  <text value="Sinopsis: “El Vigilante” sigue a un héroe&#10;enmascarado con habilidades extraordinarias que&#10;protege su ciudad de amenazas invisibles. Con un&#10;ojo siempre atento, descubre una conspiración que&#10;pone en peligro a todos los ciudadanos. Ahora, debe&#10;usar su ingenio y poderes para desmantelar la trama&#10;antes de que sea demasiado tarde."/>
-                </properties>
-              </component>
-              <component id="8dae5" class="javax.swing.JLabel" binding="RestricLabel4">
-                <constraints>
-                  <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Clasificación PG"/>
-                </properties>
-              </component>
-              <component id="48395" class="javax.swing.JLabel" binding="DuracionLabel4">
-                <constraints>
-                  <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="1 hora 50 minutos"/>
-                </properties>
-              </component>
-              <component id="5d008" class="javax.swing.JButton" binding="reservarButacasButton3" default-binding="true">
-                <constraints>
-                  <grid row="19" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Reservar Butacas"/>
-                </properties>
-              </component>
-              <component id="b7ab7" class="javax.swing.JLabel" binding="RestricLabel5">
-                <constraints>
-                  <grid row="21" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Clasificación PG-13"/>
-                </properties>
-              </component>
-              <component id="b1789" class="javax.swing.JLabel" binding="DuracionLabel5">
-                <constraints>
-                  <grid row="22" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Duración: 2 horas"/>
-                </properties>
-              </component>
-              <component id="3ef52" class="javax.swing.JButton" binding="reservarButacasButton4" default-binding="true">
-                <constraints>
-                  <grid row="24" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Reservar Butacas"/>
-                </properties>
-              </component>
-              <component id="36ca8" class="javax.swing.JLabel" binding="RestricLabel6">
-                <constraints>
-                  <grid row="26" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Clasificación PG-13"/>
-                </properties>
-              </component>
-              <component id="db367" class="javax.swing.JLabel" binding="DuracionLabel6">
-                <constraints>
-                  <grid row="27" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Duración: 2 horas "/>
-                </properties>
-              </component>
-              <component id="1ee0b" class="javax.swing.JButton" binding="reservarButacasButton5" default-binding="true">
-                <constraints>
-                  <grid row="29" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Reservar Butacas"/>
-                </properties>
-              </component>
-              <component id="77458" class="javax.swing.JLabel" binding="RestricLabel7">
-                <constraints>
-                  <grid row="31" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Clasificación PG-13"/>
-                </properties>
-              </component>
-              <component id="757db" class="javax.swing.JLabel" binding="DuracionLabel7">
-                <constraints>
-                  <grid row="32" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="uración: 2 horas 15 minutos"/>
-                </properties>
-              </component>
-              <component id="9ea17" class="javax.swing.JButton" binding="reservarButacasButton6" default-binding="true">
-                <constraints>
-                  <grid row="34" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Reservar Butacas"/>
-                </properties>
-              </component>
-              <component id="2d521" class="javax.swing.JLabel" binding="RestricLabel8">
-                <constraints>
-                  <grid row="36" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Clasificación PG "/>
-                </properties>
-              </component>
-              <component id="6a71" class="javax.swing.JLabel" binding="DuracionLabel8">
-                <constraints>
-                  <grid row="37" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Duración: 1 hora 45 minutos "/>
-                </properties>
-              </component>
-              <component id="f631f" class="javax.swing.JButton" binding="reservarButacasButton7" default-binding="true">
-                <constraints>
-                  <grid row="39" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Reservar Butacas"/>
-                </properties>
-              </component>
-              <component id="83ab3" class="javax.swing.JTextArea" binding="SinopsisText4">
-                <constraints>
-                  <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <foreground color="-16777216"/>
-                  <text value="Sinopsis: “Horizontes Desconocidos” sigue a un&#10;grupo de exploradores que descubren un portal a un&#10;mundo desconocido lleno de maravillas y peligros.&#10;Mientras atraviesan paisajes impresionantes y&#10;enfrentan criaturas misteriosas, deben trabajar&#10;juntos para encontrar el camino de regreso a casa&#10;antes de que el portal se cierre para siempre."/>
-                </properties>
-              </component>
-              <component id="abecb" class="javax.swing.JTextArea" binding="SinopsisText5">
-                <constraints>
-                  <grid row="23" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <foreground color="-16777216"/>
-                  <text value="Sinopsis: “Espadas y Llamas” sigue a un grupo de&#10;héroes que deben unirse para enfrentar una amenaza&#10;que pone en peligro su mundo. Con habilidades&#10;únicas y un enemigo formidable, se embarcan en una&#10;épica aventura llena de batallas, alianzas y&#10;descubrimientos sorprendentes"/>
-                </properties>
-              </component>
-              <component id="fb0be" class="javax.swing.JTextArea" binding="SinopsisText6">
-                <constraints>
-                  <grid row="28" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <foreground color="-16777216"/>
-                  <text value="Sinopsis: “Tesoros del Horizonte” sigue a un&#10;valiente capitán pirata y su tripulación en busca&#10;de un legendario tesoro escondido en una isla&#10;misteriosa. Enfrentándose a peligrosos mares,&#10;traiciones y criaturas míticas, deben usar su&#10;ingenio y coraje para superar los desafíos y reclamar el tesoro antes de que caiga en manos&#10;equivocadas."/>
-                </properties>
-              </component>
-              <component id="9b291" class="javax.swing.JTextArea" binding="SinopsisText7">
-                <constraints>
-                  <grid row="33" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <foreground color="-16777216"/>
-                  <text value="Sinopsis: “Caminos de la Historia” narra la épica&#10;travesía de un grupo de pioneros que, en busca de&#10;un nuevo comienzo, enfrentan desafíos y&#10;adversidades en su viaje a través de tierras&#10;desconocidas. A medida que avanzan, sus historias&#10;personales se entrelazan con los grandes eventos de&#10;la época, revelando el coraje y la determinación&#10;necesarios para forjar un nuevo destino."/>
-                </properties>
-              </component>
-              <component id="2c4a7" class="javax.swing.JTextArea" binding="SinopsisText8">
-                <constraints>
-                  <grid row="38" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <foreground color="-16777216"/>
-                  <text value="Sinopsis: “Amor en el Crepúsculo” cuenta la&#10;historia de dos almas que se encuentran en un&#10;momento inesperado de sus vidas. A medida que pasan&#10;tiempo juntos, descubren que el amor verdadero&#10;puede surgir en los lugares más inesperados y en&#10;los momentos más improbables. Con el telón de fondo&#10;de hermosos atardeceres, su relación florece y&#10;enfrentan desafíos que pondrán a prueba su amor y&#10;compromiso."/>
-                </properties>
+                <properties/>
               </component>
             </children>
           </grid>
         </children>
       </scrollpane>
-      <component id="12eda" class="javax.swing.JButton" binding="LOGOUTButton" default-binding="true">
+      <component id="d3796" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="LOG OUT"/>
+          <text value="© 2024 NovaCine. Todos los derechos reservados. Diseñado por Mathias Teran. "/>
         </properties>
       </component>
-      <hspacer id="34330">
-        <constraints>
-          <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </hspacer>
     </children>
   </grid>
 </form>
