@@ -25,21 +25,15 @@ public class Reserva extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Cartelera cartelera = new Cartelera();
-                cartelera.iniciar();
+                Funciones funci = new Funciones();
+                funci.iniciar();
                 dispose();
-                try {
-                    cartelera.MostrarCartelera();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos: " + ex.getMessage());
-                    ex.printStackTrace();
-                }
             }
         });
     }
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600,550);
+        setSize(650,600);
         setVisible(true);
     }
 }

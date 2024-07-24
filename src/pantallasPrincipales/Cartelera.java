@@ -18,8 +18,8 @@ public class Cartelera extends JFrame {
         adquirirBoletosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Reserva reser = new Reserva();
-                reser.iniciar();
+                Funciones fun = new Funciones();
+                fun.iniciar();
                 dispose();
             }
         });
@@ -35,12 +35,13 @@ public class Cartelera extends JFrame {
         Connection conn = c.conexion();
         try{
             if(conn != null){
-                String query = "Select titulo,descripcion,genero,duracion,fecha_estreno,clasificacion from Peliculas;";
+                String query = "Select id_pelicula,titulo,descripcion,genero,duracion,fecha_estreno,clasificacion from Peliculas;";
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 CarteleraText.setText("");
                 while(rs.next()){
                     CarteleraText.append("--------------------\n");
+                    CarteleraText.append("ID: " + rs.getInt("id_pelicula") + "\n");
                     CarteleraText.append("Título: " + rs.getString("titulo") + "\n");
                     CarteleraText.append("Género: " + rs.getString("genero") + "\n");
                     CarteleraText.append("Duración: " + rs.getString("duracion") + " minutos\n");
