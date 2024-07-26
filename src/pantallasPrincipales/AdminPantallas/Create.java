@@ -16,6 +16,7 @@ public class Create extends JFrame {
     private JTextField textField8;
     private JButton agregarButton;
     private JPanel CrearPanel;
+    private JButton examinarButton;
 
     public Create() {
         super("Agregar Peliculas");
