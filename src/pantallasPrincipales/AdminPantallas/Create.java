@@ -1,22 +1,25 @@
 package pantallasPrincipales.AdminPantallas;
 
+import pantallasPrincipales.CONEXION;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class Create extends JFrame {
     private JButton button1;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JTextField textField7;
-    private JTextField textField8;
+    private JTextField TituloText;
+    private JTextField DirectorText;
+    private JTextField GeneroText;
+    private JTextField DuracionText;
+    private JTextField FechaText;
+    private JTextField ClasificaionText;
     private JButton agregarButton;
     private JPanel CrearPanel;
     private JButton examinarButton;
+    private JTextArea SinopsisArea;
+    private JTextArea textArea1;
 
     public Create() {
         super("Agregar Peliculas");
@@ -29,6 +32,19 @@ public class Create extends JFrame {
                 dispose();
             }
         });
+        agregarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+    }
+
+    public void AgregarPelicula() throws SQLException {
+        CONEXION conn = new CONEXION();
+        conn.conexion();
+        String sql = "INSERT INTO peliculas (Titulo, Director, Genero, Duracion, Fecha, Clasificacion, Sinopsis) VALUES (?,?,?,?,?,?,?)";
+
     }
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

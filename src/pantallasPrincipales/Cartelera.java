@@ -20,6 +20,11 @@ public class Cartelera extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Funciones fun = new Funciones();
                 fun.iniciar();
+                try {
+                    fun.MostrarFunciones();
+                }catch (Exception ex){
+                    JOptionPane.showMessageDialog(null, "Error al mostrar la cartelera");
+                }
                 dispose();
             }
         });
@@ -41,7 +46,7 @@ public class Cartelera extends JFrame {
                 CarteleraText.setText("");
                 while(rs.next()){
                     CarteleraText.append("--------------------\n");
-                    CarteleraText.append("ID: " + rs.getInt("id_pelicula") + "\n");
+                    CarteleraText.append("ID Funcion: " + rs.getInt("id_pelicula") + "\n");
                     CarteleraText.append("Título: " + rs.getString("titulo") + "\n");
                     CarteleraText.append("Género: " + rs.getString("genero") + "\n");
                     CarteleraText.append("Duración: " + rs.getString("duracion") + " minutos\n");

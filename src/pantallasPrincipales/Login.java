@@ -1,15 +1,10 @@
 package pantallasPrincipales;
 
-
 import pantallasPrincipales.AdminPantallas.MenuAdmin;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Login extends JFrame {
     private JTextField UserText;
@@ -46,38 +41,36 @@ public class Login extends JFrame {
         boolean credencialesCorrectas = false;
         CONEXION c = new CONEXION();
         Connection conn = c.conexion();
-        try{
-            if(conn != null){
-                String query = "Select correo_electronico,contraseña,tipo_usuario from Usuarios;";
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
+        try {
+            if (conn != null) {
+                String query = "SELECT correo_electronico, tipo_usuario FROM Usuarios WHERE correo_electronico = ? AND contraseña = MD5(?)";
+                PreparedStatement pstmt = conn.prepareStatement(query);
                 String usernameInput = UserText.getText();
                 String passwordInput = new String(passText.getPassword());
-                while (rs.next()) {
-                    String correo = rs.getString("correo_electronico");
-                    String passBD = rs.getString("contraseña");
+
+                pstmt.setString(1, usernameInput);
+                pstmt.setString(2, passwordInput);
+                ResultSet rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    credencialesCorrectas = true;
                     String TipoUser = rs.getString("tipo_usuario");
 
-                    if (correo.equals(usernameInput) && passBD.equals(passwordInput)) {
-                        credencialesCorrectas = true;
-                        if (TipoUser.equals("cliente")) {
-                            Cartelera cart = new Cartelera();
-                            cart.iniciar();
-                            cart.MostrarCartelera();
-                        } else if (TipoUser.equals("administrador")) {
-                            MenuAdmin menu = new MenuAdmin();
-                            menu.iniciar();
-                        }
-                        dispose();
-                        break;
+                    if (TipoUser.equals("cliente")) {
+                        Cartelera cart = new Cartelera();
+                        cart.iniciar();
+                        cart.MostrarCartelera();
+                    } else if (TipoUser.equals("administrador")) {
+                        MenuAdmin menu = new MenuAdmin();
+                        menu.iniciar();
                     }
-                }
-                if (!credencialesCorrectas) {
+                    dispose();
+                } else {
                     JOptionPane.showMessageDialog(null, "Credenciales incorrectas");
                 }
-            }
                 conn.close();
-            }catch(SQLException ex){
+            }
+        } catch (SQLException ex) {
             System.out.println("Error al conectar a la base de datos: " + ex.getMessage());
             ex.printStackTrace();
         }
