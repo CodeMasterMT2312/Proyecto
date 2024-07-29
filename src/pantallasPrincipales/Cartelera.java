@@ -28,7 +28,6 @@ public class Cartelera extends JFrame {
                 dispose();
             }
         });
-
         iniciar();
     }
 

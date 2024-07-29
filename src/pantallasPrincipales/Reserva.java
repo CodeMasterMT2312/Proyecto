@@ -28,6 +28,11 @@ public class Reserva extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Funciones funci = new Funciones();
                 funci.iniciar();
+                try {
+                    funci.MostrarFunciones();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Error al mostrar la cartelera");
+                }
                 dispose();
             }
         });

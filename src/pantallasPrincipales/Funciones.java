@@ -31,9 +31,8 @@ public class Funciones extends JFrame {
                 dispose();
                 try {
                     cart.MostrarCartelera();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos: " + ex.getMessage());
-                    ex.printStackTrace();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Error al mostrar la cartelera");
                 }
             }
         });
