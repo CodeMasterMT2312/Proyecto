@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CrearFunciones {
+public class CrearFunciones extends JFrame {
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -21,5 +21,11 @@ public class CrearFunciones {
 
             }
         });
+    }
+
+    public void iniciar(){
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(650,600);
+        setVisible(true);
     }
 }
