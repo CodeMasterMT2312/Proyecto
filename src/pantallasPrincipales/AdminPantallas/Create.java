@@ -17,7 +17,6 @@ public class Create extends JFrame {
     private JTextField ClasificaionText;
     private JButton agregarButton;
     private JPanel CrearPanel;
-    private JButton examinarButton;
     private JTextArea SinopsisArea;
     private JTextArea textArea1;
 
@@ -35,15 +34,45 @@ public class Create extends JFrame {
         agregarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    AgregarPelicula();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
 
     public void AgregarPelicula() throws SQLException {
         CONEXION conn = new CONEXION();
-        conn.conexion();
-        String sql = "INSERT INTO peliculas (Titulo, Director, Genero, Duracion, Fecha, Clasificacion, Sinopsis) VALUES (?,?,?,?,?,?,?)";
+        Connection conn2 = conn.conexion();
+        try(conn2) {
+            String sql = "INSERT INTO peliculas (Titulo, Director, Genero, Duracion, Fecha, Clasificacion, Sinopsis) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement guardar = conn2.prepareStatement(sql);
+            guardar.setString(1, TituloText.getText());
+            guardar.setString(2, DirectorText.getText());
+            guardar.setString(3, GeneroText.getText());
+            guardar.setInt(4, Integer.parseInt(DuracionText.getText()));
+            guardar.setDate(5, Date.valueOf(FechaText.getText()));
+            guardar.setString(6, ClasificaionText.getText());
+            guardar.setString(7, SinopsisArea.getText());
+            int RegistroInsertado = guardar.executeUpdate();
+            if(RegistroInsertado > 0){
+                JOptionPane.showMessageDialog(null, "Registro insertado correctamente");
+                TituloText.setText("");
+                DirectorText.setText("");
+                GeneroText.setText("");
+                DuracionText.setText("");
+                FechaText.setText("");
+                ClasificaionText.setText("");
+                SinopsisArea.setText("");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error al insertar el registro");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al agregar la pelicula: " + e.getMessage());
+            e.printStackTrace();
+        }
 
     }
     public void iniciar(){

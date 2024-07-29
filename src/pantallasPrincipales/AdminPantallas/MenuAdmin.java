@@ -10,6 +10,9 @@ public class MenuAdmin extends JFrame {
     private JButton updateButton;
     private JButton deleteButton;
     private JPanel adminMenuPanel;
+    private JButton borrarUsuarioButton;
+    private JButton agregarImagenButton;
+    private JButton agregarFuncionButton;
 
     public MenuAdmin() {
         super("Menu Administrador");
@@ -43,6 +46,14 @@ public class MenuAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Delete del = new Delete();
                 del.iniciar();
+                dispose();
+            }
+        });
+        agregarImagenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AgregarImagen AGIMG= new AgregarImagen();
+                AGIMG.iniciar();
                 dispose();
             }
         });
