@@ -37,7 +37,7 @@ public class Read extends JFrame {
         Connection conn2 = conn.conexion();
         try(conn2) {
             String[] queries = {
-                    "SELECT * FROM `Peliculas`;",
+                    "SELECT id_pelicula,titulo,director,genero,duracion,fecha_estreno,clasificacion,reparto,descripcion FROM `Peliculas`;",
                     "SELECT * FROM `Funciones`;",
                     "SELECT * FROM `Salas`;",
                     "SELECT * FROM `Usuarios`;"
@@ -66,7 +66,6 @@ public class Read extends JFrame {
                 }
                 sb.append("\n");
             }
-
             // Mostrar el contenido en el JTextArea
             VisuArea.setText(sb.toString());
         }
