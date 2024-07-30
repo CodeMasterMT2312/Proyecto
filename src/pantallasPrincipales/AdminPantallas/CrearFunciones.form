@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="pantallasPrincipales.AdminPantallas.CrearFunciones">
-  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="CrearFuncionPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="492" height="479"/>
@@ -15,7 +15,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="c2b98" layout-manager="GridLayoutManager" row-count="12" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="c2b98" layout-manager="GridLayoutManager" row-count="14" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints/>
             <properties/>
@@ -29,7 +29,7 @@
                   <text value="id_pelicula"/>
                 </properties>
               </component>
-              <component id="197bd" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="197bd" class="javax.swing.JTextField" binding="ID_Pelicula">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -45,7 +45,7 @@
                   <text value="id_sala"/>
                 </properties>
               </component>
-              <component id="55721" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="55721" class="javax.swing.JTextField" binding="ID_Sala">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -58,12 +58,12 @@
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="fecha"/>
+                  <text value="FECHA"/>
                 </properties>
               </component>
-              <component id="2d1b4" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+              <component id="2d1b4" class="javax.swing.JTextField" binding="Fecha">
                 <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
@@ -71,29 +71,13 @@
               </component>
               <component id="7fc46" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="hora"/>
+                  <text value="HORA"/>
                 </properties>
               </component>
-              <component id="96d5d" class="javax.swing.JTextField" binding="textField4" default-binding="true">
-                <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                </constraints>
-                <properties/>
-              </component>
-              <component id="fa8ab" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="idioma"/>
-                </properties>
-              </component>
-              <component id="f8767" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+              <component id="96d5d" class="javax.swing.JTextField" binding="Hora">
                 <constraints>
                   <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -101,21 +85,53 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="14f6b" class="javax.swing.JLabel">
+              <component id="fa8ab" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="subtitulos"/>
+                  <text value="idioma"/>
                 </properties>
               </component>
-              <component id="2b8bd" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+              <component id="f8767" class="javax.swing.JTextField" binding="Idioma">
                 <constraints>
                   <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
                 <properties/>
+              </component>
+              <component id="14f6b" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="subtitulos"/>
+                </properties>
+              </component>
+              <component id="2b8bd" class="javax.swing.JTextField" binding="Subtitulos">
+                <constraints>
+                  <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="83173" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Ejemplo: 2024-07-25"/>
+                </properties>
+              </component>
+              <component id="885c0" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Ejemplo: 18:00:00"/>
+                </properties>
               </component>
             </children>
           </grid>

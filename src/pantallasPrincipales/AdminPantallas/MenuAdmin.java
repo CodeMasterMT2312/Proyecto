@@ -57,6 +57,14 @@ public class MenuAdmin extends JFrame {
                 dispose();
             }
         });
+        agregarFuncionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CrearFunciones CF = new CrearFunciones();
+                CF.iniciar();
+                dispose();
+            }
+        });
     }
 
     public void iniciar(){
