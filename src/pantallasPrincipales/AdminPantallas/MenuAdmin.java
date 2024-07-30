@@ -3,6 +3,7 @@ package pantallasPrincipales.AdminPantallas;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class MenuAdmin extends JFrame {
     private JButton createButton;
@@ -30,6 +31,11 @@ public class MenuAdmin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Read leer = new Read();
                 leer.iniciar();
+                try {
+                    leer.VisualizarBDD();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
                 dispose();
             }
         });
