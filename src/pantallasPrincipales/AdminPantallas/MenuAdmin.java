@@ -14,6 +14,8 @@ public class MenuAdmin extends JFrame {
     private JButton borrarUsuarioButton;
     private JButton agregarImagenButton;
     private JButton agregarFuncionButton;
+    private JButton borrarImagenButton;
+    private JButton borrarFuncionButton;
 
     public MenuAdmin() {
         super("Menu Administrador");
