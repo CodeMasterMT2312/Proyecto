@@ -18,7 +18,7 @@ public class Create extends JFrame {
     private JButton agregarButton;
     private JPanel CrearPanel;
     private JTextArea SinopsisArea;
-    private JTextArea textArea1;
+    private JTextArea RepartoArea;
 
     public Create() {
         super("Agregar Peliculas");
@@ -47,7 +47,7 @@ public class Create extends JFrame {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();
         try(conn2) {
-            String sql = "INSERT INTO peliculas (Titulo, Director, Genero, Duracion, Fecha, Clasificacion, Sinopsis) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Peliculas (titulo, director, genero, duracion, fecha_estreno, clasificacion, descripcion,reparto) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement guardar = conn2.prepareStatement(sql);
             guardar.setString(1, TituloText.getText());
             guardar.setString(2, DirectorText.getText());
@@ -56,6 +56,7 @@ public class Create extends JFrame {
             guardar.setDate(5, Date.valueOf(FechaText.getText()));
             guardar.setString(6, ClasificaionText.getText());
             guardar.setString(7, SinopsisArea.getText());
+            guardar.setString(8, RepartoArea.getText());
             int RegistroInsertado = guardar.executeUpdate();
             if(RegistroInsertado > 0){
                 JOptionPane.showMessageDialog(null, "Registro insertado correctamente");
