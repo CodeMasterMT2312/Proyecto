@@ -65,12 +65,12 @@
         </constraints>
         <properties>
           <model>
-            <item value="ID Pelicula"/>
-            <item value="ID Sala"/>
+            <item value="id_pelicula"/>
+            <item value="id_sala"/>
             <item value="Fecha"/>
             <item value="Hora"/>
             <item value="Idioma"/>
-            <item value="Subtitulos (TRUE, FALSE)"/>
+            <item value="Subtitulos"/>
           </model>
         </properties>
       </component>

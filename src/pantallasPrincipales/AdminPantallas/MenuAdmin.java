@@ -1,9 +1,6 @@
 package pantallasPrincipales.AdminPantallas;
 
-import pantallasPrincipales.AdminPantallas.PantallasAux.ActualizarFunciones;
-import pantallasPrincipales.AdminPantallas.PantallasAux.ActualizarImagenes;
-import pantallasPrincipales.AdminPantallas.PantallasAux.ActualizarPeliculas;
-import pantallasPrincipales.AdminPantallas.PantallasAux.ActualizarUsuarios;
+import pantallasPrincipales.AdminPantallas.PantallasAux.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -106,6 +103,30 @@ public class MenuAdmin extends JFrame {
                 dispose();
             }
         });
+        borrarFuncionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BorrarFuncion boFun = new BorrarFuncion();
+                boFun.iniciar();
+                dispose();
+            }
+        });
+        borrarUsuarioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DelUser del = new DelUser();
+                del.iniciar();
+                dispose();
+            }
+        });
+        borrarImagenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BorrarImagen bor = new BorrarImagen();
+                bor.iniciar();
+                dispose();
+            }
+        });
     }
 
     public void iniciar(){
@@ -113,6 +134,4 @@ public class MenuAdmin extends JFrame {
         setSize(700,700);
         setVisible(true);
     }
-
-
 }

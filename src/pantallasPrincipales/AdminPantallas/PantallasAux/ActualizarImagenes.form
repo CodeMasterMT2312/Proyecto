@@ -79,7 +79,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="80593" class="javax.swing.JButton" binding="examinarButton" default-binding="true">
         <constraints>

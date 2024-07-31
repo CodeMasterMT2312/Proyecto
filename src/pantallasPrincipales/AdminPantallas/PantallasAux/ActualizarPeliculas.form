@@ -86,8 +86,8 @@
         </constraints>
         <properties>
           <model>
-            <item value="Titulo"/>
-            <item value="Sinopsis"/>
+            <item value="titulo"/>
+            <item value="descripcion"/>
             <item value="director"/>
             <item value="reparto"/>
             <item value="genero"/>

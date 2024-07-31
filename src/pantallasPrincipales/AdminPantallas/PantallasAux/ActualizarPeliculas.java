@@ -56,13 +56,7 @@ public class ActualizarPeliculas extends JFrame {
             if (id.isEmpty() || campo.isEmpty() || valor.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos");
             }
-            // Determinar el tipo de dato y preparar la consulta
-            String query;
-            if (campo.equals("duracion")) {
-                query = "UPDATE Peliculas SET " + campo + " = ? WHERE id_pelicula = ?";
-            }else {
-                query = "UPDATE Peliculas SET " + campo + " = ? WHERE id_pelicula = ?";
-            }
+            String query="UPDATE Peliculas SET " + campo + " = ? WHERE id_pelicula = ?";
 
             try (PreparedStatement guardar = conn2.prepareStatement(query)) {
                 if (campo.equals("duracion")) {
@@ -74,7 +68,6 @@ public class ActualizarPeliculas extends JFrame {
                 }
                 guardar.setInt(2, Integer.parseInt(id));
                 int filasAfectadas = guardar.executeUpdate();
-
                 if (filasAfectadas > 0) {
                     JOptionPane.showMessageDialog(null, "Película actualizada exitosamente");
                     CambiadoText.setText("");
