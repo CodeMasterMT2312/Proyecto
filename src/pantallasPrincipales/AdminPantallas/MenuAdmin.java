@@ -1,11 +1,14 @@
 package pantallasPrincipales.AdminPantallas;
 
 import pantallasPrincipales.AdminPantallas.PantallasAux.*;
+import pantallasPrincipales.CONEXION;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.sql.*;
 
 public class MenuAdmin extends JFrame {
     private JButton createButton;
@@ -21,6 +24,7 @@ public class MenuAdmin extends JFrame {
     private JButton actualizarImagenesButton;
     private JButton actualizarUsuariosButton;
     private JButton actualizarFuncionesButton;
+    private JButton generarEstadisticasButton;
 
     public MenuAdmin() {
         super("Menu Administrador");
@@ -127,6 +131,14 @@ public class MenuAdmin extends JFrame {
                 dispose();
             }
         });
+        generarEstadisticasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Estadisticas genen = new Estadisticas();
+                genen.iniciar();
+                dispose();
+            }
+        });
     }
 
     public void iniciar(){
@@ -134,4 +146,5 @@ public class MenuAdmin extends JFrame {
         setSize(700,700);
         setVisible(true);
     }
+
 }
