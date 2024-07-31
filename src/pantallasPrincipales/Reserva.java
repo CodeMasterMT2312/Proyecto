@@ -1,29 +1,25 @@
 package pantallasPrincipales;
 
+
+import java.sql.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
+
 
 public class Reserva extends JFrame {
     private JTextField NumAsiento;
     private JButton siguienteButton;
     private JPanel ReservaPanel;
     private JTextField BoletosCantidad;
-    private JButton button1;
+    private JButton Regresar;
     private JTextField IDFuncion;
     private JTextField CedulaText;
 
     public Reserva() {
         super("Reservar Butacas");
         setContentPane(ReservaPanel);
-        siguienteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        button1.addActionListener(new ActionListener() {
+        Regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Funciones funci = new Funciones();
@@ -41,6 +37,7 @@ public class Reserva extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     GuardarReserva();
+
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -152,6 +149,65 @@ public class Reserva extends JFrame {
             IDFuncion.setText("");
             BoletosCantidad.setText("");
             NumAsiento.setText("");
+
+            // Mostrar la información de la reserva
+            String query = """
+                SELECT
+                    r.id_reserva,
+                    r.id_usuario,
+                    r.id_funcion,
+                    r.fecha_reserva,
+                    f.fecha AS fecha_funcion,
+                    f.hora AS hora_funcion,
+                    a.fila,
+                    a.numero
+                FROM
+                    Reservas r
+                JOIN
+                    Asientos_Reservas ar ON r.id_reserva = ar.id_reserva
+                JOIN
+                    Asientos a ON ar.id_asiento = a.id_asiento
+                JOIN
+                    Funciones f ON r.id_funcion = f.id_funcion
+                WHERE
+                    r.id_reserva = ?;
+            """;
+            PreparedStatement stmt = conn2.prepareStatement(query);
+            stmt.setInt(1, idReserva);
+            ResultSet rs = stmt.executeQuery();
+
+            // Construir el mensaje a mostrar en el JOptionPane
+            StringBuilder mensaje = new StringBuilder();
+            boolean datosEncontrados = false;
+            while (rs.next()) {
+                // Recuperar los datos del ResultSet
+                int idReservaDb = rs.getInt("id_reserva");
+                Timestamp fechaReserva = rs.getTimestamp("fecha_reserva");
+                Date fechaFuncion = rs.getDate("fecha_funcion");
+                Time horaFuncion = rs.getTime("hora_funcion");
+                String fila = rs.getString("fila");
+                int numero = rs.getInt("numero");
+
+                // Añadir la información al mensaje
+                mensaje.append("Reserva ID: ").append(idReservaDb).append("\n")
+                        .append("Usuario ID: ").append(idUsuario).append("\n")
+                        .append("Función ID: ").append(idFuncion).append("\n")
+                        .append("Fecha Reserva: ").append(fechaReserva).append("\n")
+                        .append("Fecha Función: ").append(fechaFuncion).append("\n")
+                        .append("Hora Función: ").append(horaFuncion).append("\n")
+                        .append("Fila: ").append(fila).append("\n")
+                        .append("Número: ").append(numero).append("\n");
+
+                datosEncontrados = true;
+            }
+
+
+            if (mensaje.length() == 0) {
+                mensaje.append("No se encontró información para la reserva ID: ").append(idReserva);
+            }
+            // Mostrar la información en un JOptionPane
+            JOptionPane.showMessageDialog(null, mensaje.toString());
+
         } catch (Exception e) {
             if (conn2 != null) {
                 try {
@@ -164,7 +220,7 @@ public class Reserva extends JFrame {
             JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos: " + e.getMessage());
             e.printStackTrace();
         } finally {
-            if (conn2 != null && !success) {
+            if (conn2 != null) {
                 try {
                     conn2.close();
                 } catch (SQLException closeEx) {
@@ -174,7 +230,6 @@ public class Reserva extends JFrame {
             }
         }
     }
-
 
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
