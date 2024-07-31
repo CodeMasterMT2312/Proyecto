@@ -142,6 +142,10 @@ public class Reserva extends JFrame {
                 }
             }
             insertAsientosStmt.executeBatch();
+
+            // Actualizar estadísticas
+            ActualizarEstadisticas(conn2, idFuncion);
+
             conn2.commit();
             success = true;
             JOptionPane.showMessageDialog(null, "Reserva realizada con éxito.");
@@ -233,7 +237,59 @@ public class Reserva extends JFrame {
 
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(650,600);
+        setSize(650,700);
         setVisible(true);
+    }
+
+    public void ActualizarEstadisticas(Connection conn2, int idFuncion) throws SQLException {
+        // Contar el número total de asientos para la función
+        String totalAsientosQuery = "SELECT COUNT(*) FROM Asientos WHERE id_sala = (SELECT id_sala FROM Funciones WHERE id_funcion = ?)";
+        PreparedStatement totalAsientosStmt = conn2.prepareStatement(totalAsientosQuery);
+        totalAsientosStmt.setInt(1, idFuncion);
+        ResultSet totalAsientosRs = totalAsientosStmt.executeQuery();
+        int totalAsientos = 0;
+        if (totalAsientosRs.next()) {
+            totalAsientos = totalAsientosRs.getInt(1);
+        }
+
+        // Contar el número de asientos reservados para la función
+        String asientosReservadosQuery = "SELECT COUNT(*) FROM Asientos_Reservas WHERE id_asiento IN (SELECT id_asiento FROM Asientos WHERE id_sala = (SELECT id_sala FROM Funciones WHERE id_funcion = ?))";
+        PreparedStatement asientosReservadosStmt = conn2.prepareStatement(asientosReservadosQuery);
+        asientosReservadosStmt.setInt(1, idFuncion);
+        ResultSet asientosReservadosRs = asientosReservadosStmt.executeQuery();
+        int asientosReservados = 0;
+        if (asientosReservadosRs.next()) {
+            asientosReservados = asientosReservadosRs.getInt(1);
+        }
+
+        // Verificar si ya existe una entrada en la tabla Estadisticas para esta función
+        String checkEstadisticasQuery = "SELECT COUNT(*) FROM Estadisticas WHERE id_funcion = ?";
+        PreparedStatement checkEstadisticasStmt = conn2.prepareStatement(checkEstadisticasQuery);
+        checkEstadisticasStmt.setInt(1, idFuncion);
+        ResultSet checkEstadisticasRs = checkEstadisticasStmt.executeQuery();
+        boolean existeEstadistica = false;
+        if (checkEstadisticasRs.next()) {
+            existeEstadistica = checkEstadisticasRs.getInt(1) > 0;
+        }
+
+        // Actualizar o insertar los datos en la tabla Estadisticas
+        String estadisticasQuery;
+        if (existeEstadistica) {
+            // Actualizar la estadística existente
+            estadisticasQuery = "UPDATE Estadisticas SET asientos_totales = ?, asientos_reservados = ?, fecha = CURDATE() WHERE id_funcion = ?";
+            PreparedStatement estadisticasStmt = conn2.prepareStatement(estadisticasQuery);
+            estadisticasStmt.setInt(1, totalAsientos);
+            estadisticasStmt.setInt(2, asientosReservados);
+            estadisticasStmt.setInt(3, idFuncion);
+            estadisticasStmt.executeUpdate();
+        } else {
+            // Insertar una nueva estadística
+            estadisticasQuery = "INSERT INTO Estadisticas (id_funcion, asientos_totales, asientos_reservados, fecha) VALUES (?, ?, ?, CURDATE())";
+            PreparedStatement estadisticasStmt = conn2.prepareStatement(estadisticasQuery);
+            estadisticasStmt.setInt(1, idFuncion);
+            estadisticasStmt.setInt(2, totalAsientos);
+            estadisticasStmt.setInt(3, asientosReservados);
+            estadisticasStmt.executeUpdate();
+        }
     }
 }
