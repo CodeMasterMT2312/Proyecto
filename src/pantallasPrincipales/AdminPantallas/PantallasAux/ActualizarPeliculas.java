@@ -77,6 +77,9 @@ public class ActualizarPeliculas extends JFrame {
 
                 if (filasAfectadas > 0) {
                     JOptionPane.showMessageDialog(null, "Película actualizada exitosamente");
+                    CambiadoText.setText("");
+                    ID_Pelicula.setText("");
+                    CampoCombo.setSelectedIndex(0);
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró la película con ese ID");
                 }
