@@ -1,6 +1,8 @@
 package pantallasPrincipales;
 
 import pantallasPrincipales.AdminPantallas.MenuAdmin;
+import pantallasPrincipales.AdminPantallas.MenuAdministrador;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,7 +63,7 @@ public class Login extends JFrame {
                         cart.iniciar();
                         cart.MostrarCartelera();
                     } else if (TipoUser.equals("administrador")) {
-                        MenuAdmin menu = new MenuAdmin();
+                        MenuAdministrador menu = new MenuAdministrador();
                         menu.iniciar();
                     }
                     dispose();
