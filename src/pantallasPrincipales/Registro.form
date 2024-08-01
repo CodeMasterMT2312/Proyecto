@@ -16,7 +16,7 @@
     <children>
       <component id="de70e" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="1" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
         </constraints>
         <properties>
           <icon value="img_ProyectoFinal/logoChik.png"/>
@@ -132,7 +132,7 @@
       </component>
       <component id="4667c" class="javax.swing.JButton" binding="button2" default-binding="true">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-23296"/>
@@ -149,12 +149,12 @@
       </component>
       <hspacer id="8935">
         <constraints>
-          <grid row="2" column="0" row-span="8" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="7" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
       <hspacer id="cf024">
         <constraints>
-          <grid row="2" column="3" row-span="8" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="3" row-span="10" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="4" use-parent-layout="false"/>
         </constraints>
       </hspacer>
       <component id="73d12" class="javax.swing.JPasswordField" binding="ContrasenaText">

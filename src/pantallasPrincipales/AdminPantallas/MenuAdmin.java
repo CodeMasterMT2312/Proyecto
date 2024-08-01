@@ -143,7 +143,7 @@ public class MenuAdmin extends JFrame {
 
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700,700);
+        setSize(850,700);
         setVisible(true);
     }
 

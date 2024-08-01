@@ -54,7 +54,7 @@ public class AgregarImagen extends JFrame {
 
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700,700);
+        setSize(500,500);
         setVisible(true);
     }
 
