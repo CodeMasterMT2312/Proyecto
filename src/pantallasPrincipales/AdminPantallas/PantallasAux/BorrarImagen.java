@@ -1,6 +1,6 @@
 package pantallasPrincipales.AdminPantallas.PantallasAux;
 
-import pantallasPrincipales.AdminPantallas.MenuAdmin;
+import pantallasPrincipales.AdminPantallas.MenuAdministrador;
 import pantallasPrincipales.CONEXION;
 
 import javax.swing.*;
@@ -20,7 +20,7 @@ public class BorrarImagen extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin menuAdmin = new MenuAdmin();
+                MenuAdministrador menuAdmin = new MenuAdministrador();
                 menuAdmin.iniciar();
                 dispose();
             }

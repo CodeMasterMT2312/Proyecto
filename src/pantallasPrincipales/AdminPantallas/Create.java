@@ -26,7 +26,7 @@ public class Create extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin menuAd = new MenuAdmin();
+                MenuAdministrador menuAd = new MenuAdministrador();
                 menuAd.iniciar();
                 dispose();
             }

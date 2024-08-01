@@ -4,15 +4,14 @@ import pantallasPrincipales.AdminPantallas.PantallasAux.*;
 import pantallasPrincipales.CONEXION;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class MenuAdministrador extends JFrame {
     private JTabbedPane tabbedPane1;
@@ -29,14 +28,24 @@ public class MenuAdministrador extends JFrame {
     private JButton eliminarImagenButton;
     private JButton eliminarPeliculaButton;
     private JButton verBDDButton;
-    private JTextArea VisuArea;
     private JButton examinarButton;
     private JTextField ExamPath;
     private JButton generarEstadisticasButton;
+    private JTabbedPane tabbedPane2;
+    private JComboBox CompletoBox;
+    private JComboBox IDCombo;
+    private JTextField IdTabla;
+    private JButton visualizarRegistroButton;
+    private JTable IDVisu;
+    private JTable VisuArea;
 
     public MenuAdministrador() {
         super("Menu Administrador");
         setContentPane(AdminPanel);
+        IDVisu.setAutoCreateRowSorter(true);
+        JTableHeader header = IDVisu.getTableHeader();
+        header.setVisible(true);
+        IDVisu.setTableHeader(header);
         verBDDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -156,44 +165,77 @@ public class MenuAdministrador extends JFrame {
                 dispose();
             }
         });
+        visualizarRegistroButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    VisualizarRegistro();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
     // Metodo de Visulizacion de la Base de Datos
     public void VisualizarBDD() throws SQLException {
+        // Obtener la opción seleccionada en el ComboBox
+        String seleccion = (String) CompletoBox.getSelectedItem();
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();
-        try(conn2) {
-            String[] queries = {
-                    "SELECT id_pelicula,titulo,director,genero,duracion,fecha_estreno,clasificacion,reparto,descripcion FROM `Peliculas`;",
-                    "SELECT * FROM `Funciones`;",
-                    "SELECT * FROM `Salas`;",
-                    "SELECT * FROM `Usuarios`;"
-            };
-            Statement stmt = conn2.createStatement();
-            StringBuilder sb = new StringBuilder();
-
-            for (String query : queries) {
-                ResultSet rs = stmt.executeQuery(query);
-                int columnCount = rs.getMetaData().getColumnCount();
-
-                sb.append("Tabla: ").append(rs.getMetaData().getTableName(1)).append("\n");
-
-                // Obtener los nombres de las columnas
-                for (int i = 1; i <= columnCount; i++) {
-                    sb.append(rs.getMetaData().getColumnName(i)).append("\t");
-                }
-                sb.append("\n");
-
-                // Obtener los datos de las filas
-                while (rs.next()) {
-                    for (int i = 1; i <= columnCount; i++) {
-                        sb.append(rs.getString(i)).append("\t");
-                    }
-                    sb.append("\n");
-                }
-                sb.append("\n");
+        try (conn2) {
+            String query = "";
+            // Seleccionar la consulta SQL según la opción seleccionada
+            switch (seleccion) {
+                case "Usuarios":
+                    query = "SELECT * FROM `Usuarios`;";
+                    break;
+                case "Peliculas":
+                    query = "SELECT id_pelicula, titulo, director, genero, duracion, fecha_estreno, clasificacion, reparto, descripcion FROM `Peliculas`;";
+                    break;
+                case "Reservas":
+                    query = "SELECT * FROM `Reservas`;";
+                    break;
+                case "Salas":
+                    query = "SELECT * FROM `Salas`;";
+                    break;
+                case "Funciones":
+                    query = "SELECT * FROM `Funciones`;";
+                    break;
+                case "Estadisticas":
+                    query = "SELECT * FROM `Estadisticas`;";
+                    break;
+                case "Asientos_Reservas":
+                    query = "SELECT * FROM `Asientos_Reservas`;";
+                    break;
+                case "Asientos":
+                    query = "SELECT * FROM `Asientos`;";
+                    break;
+                default:
+                    return; // Si no se selecciona nada válido, salir del método
             }
-            // Mostrar el contenido en el JTextArea
-            VisuArea.setText(sb.toString());
+
+            Statement stmt = conn2.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            int columnCount = rs.getMetaData().getColumnCount();
+
+            // Crear modelo de tabla
+            DefaultTableModel model = new DefaultTableModel();
+
+            // Obtener los nombres de las columnas y añadirlos al modelo
+            for (int i = 1; i <= columnCount; i++) {
+                model.addColumn(rs.getMetaData().getColumnName(i));
+            }
+
+            // Obtener los datos de las filas y añadirlos al modelo
+            while (rs.next()) {
+                Object[] rowData = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    rowData[i - 1] = rs.getObject(i);
+                }
+                model.addRow(rowData);
+            }
+            // Establecer el modelo en el JTable (VisuArea)
+            VisuArea.setModel(model);
         }
     }
 
@@ -241,6 +283,112 @@ public class MenuAdministrador extends JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al generar estadísticas: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    // Metodo para ver registro por ID
+    public void VisualizarRegistro() throws SQLException {
+        String seleccion = (String) IDCombo.getSelectedItem();
+        String idStr = IdTabla.getText();
+
+        if (idStr == null || idStr.isEmpty()) {
+            System.out.println("ID no proporcionado o está vacío");
+            return;
+        }
+
+        int id;
+        try {
+            id = Integer.parseInt(idStr);
+        } catch (NumberFormatException e) {
+            System.out.println("ID no es un número válido");
+            return;
+        }
+
+        CONEXION conn = new CONEXION();
+        Connection conn2 = conn.conexion();
+
+        if (conn2 == null) {
+            System.out.println("Conexión a la base de datos fallida");
+            return;
+        }
+
+        try (conn2) {
+            String query = "";
+            switch (seleccion) {
+                case "Usuarios":
+                    query = "SELECT * FROM `Usuarios` WHERE Cedula = ?;";
+                    break;
+                case "Peliculas":
+                    query = "SELECT id_pelicula, titulo, director, genero, duracion, fecha_estreno, clasificacion, reparto, descripcion FROM `Peliculas` WHERE id_pelicula = ?;";
+                    break;
+                case "Salas":
+                    query = "SELECT * FROM `Salas` WHERE id_sala = ?;";
+                    break;
+                case "Reservas":
+                    query = "SELECT * FROM `Reservas` WHERE id_reserva = ?;";
+                    break;
+                case "Funciones":
+                    query = "SELECT * FROM `Funciones` WHERE id_funcion = ?;";
+                    break;
+                case "Estadisticas":
+                    query = "SELECT * FROM `Estadisticas` WHERE id_estadistica = ?;";
+                    break;
+                case "Asientos_Reservas":
+                    query = "SELECT * FROM `Asientos_Reservas` WHERE id_reserva = ?;";
+                    break;
+                case "Asientos":
+                    query = "SELECT * FROM `Asientos` WHERE id_asiento = ?;";
+                    break;
+                default:
+                    System.out.println("Selección no válida");
+                    return;
+            }
+
+            PreparedStatement pstmt = conn2.prepareStatement(query);
+            pstmt.setInt(1, id);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.out.println("No se encontraron resultados");
+                return;
+            }
+
+            DefaultTableModel model = new DefaultTableModel();
+
+            try {
+                int columnCount = rs.getMetaData().getColumnCount();
+
+                // Obtener los nombres de las columnas y añadirlos al modelo
+                for (int i = 1; i <= columnCount; i++) {
+                    model.addColumn(rs.getMetaData().getColumnName(i));
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al obtener los nombres de las columnas: " + e.getMessage());
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                // Obtener los datos de las filas y añadirlos al modelo
+                while (rs.next()) {
+                    Object[] rowData = new Object[rs.getMetaData().getColumnCount()];
+                    for (int i = 1; i <= rowData.length; i++) {
+                        rowData[i - 1] = rs.getObject(i);
+                    }
+                    model.addRow(rowData);
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al obtener los datos de las filas: " + e.getMessage());
+                e.printStackTrace();
+            }
+
+            // Establecer el modelo en el JTable
+            IDVisu.setModel(model);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al ejecutar la consulta SQL");
         }
     }
 

@@ -20,7 +20,7 @@ public class DelUser extends JFrame {
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin DelMenu = new MenuAdmin();
+                MenuAdministrador DelMenu = new MenuAdministrador();
                 DelMenu.iniciar();
                 dispose();
             }

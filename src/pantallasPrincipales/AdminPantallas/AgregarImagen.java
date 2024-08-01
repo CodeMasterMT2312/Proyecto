@@ -45,7 +45,7 @@ public class AgregarImagen extends JFrame {
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin menuAdmin = new MenuAdmin();
+                MenuAdministrador menuAdmin = new MenuAdministrador();
                 menuAdmin.iniciar();
                 dispose();
             }

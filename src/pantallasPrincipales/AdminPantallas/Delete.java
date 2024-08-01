@@ -19,7 +19,7 @@ public class Delete extends JFrame {
         Regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin mAdmin = new MenuAdmin();
+                MenuAdministrador mAdmin = new MenuAdministrador();
                 mAdmin.iniciar();
                 dispose();
             }

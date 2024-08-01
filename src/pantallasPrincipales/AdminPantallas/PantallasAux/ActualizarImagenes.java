@@ -1,6 +1,6 @@
 package pantallasPrincipales.AdminPantallas.PantallasAux;
 
-import pantallasPrincipales.AdminPantallas.MenuAdmin;
+import pantallasPrincipales.AdminPantallas.MenuAdministrador;
 import pantallasPrincipales.CONEXION;
 
 import javax.swing.*;
@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 
@@ -29,7 +28,7 @@ public class ActualizarImagenes extends  JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin MenAd = new MenuAdmin();
+                MenuAdministrador MenAd = new MenuAdministrador();
                 MenAd.iniciar();
                 dispose();
             }

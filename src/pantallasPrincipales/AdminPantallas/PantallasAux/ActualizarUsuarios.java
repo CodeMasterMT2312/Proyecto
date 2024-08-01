@@ -1,6 +1,6 @@
 package pantallasPrincipales.AdminPantallas.PantallasAux;
 
-import pantallasPrincipales.AdminPantallas.MenuAdmin;
+import pantallasPrincipales.AdminPantallas.MenuAdministrador;
 import pantallasPrincipales.CONEXION;
 
 import javax.swing.*;
@@ -24,7 +24,7 @@ public class ActualizarUsuarios extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin user = new MenuAdmin();
+                MenuAdministrador user = new MenuAdministrador();
                 user.iniciar();
                 dispose();
             }

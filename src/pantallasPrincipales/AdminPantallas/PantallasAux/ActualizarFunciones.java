@@ -1,6 +1,6 @@
 package pantallasPrincipales.AdminPantallas.PantallasAux;
 
-import pantallasPrincipales.AdminPantallas.MenuAdmin;
+import pantallasPrincipales.AdminPantallas.MenuAdministrador;
 import pantallasPrincipales.CONEXION;
 
 import javax.swing.*;
@@ -22,7 +22,7 @@ public class ActualizarFunciones extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin MenusAdmin = new MenuAdmin();
+                MenuAdministrador MenusAdmin = new MenuAdministrador();
                 MenusAdmin.iniciar();
                 dispose();
             }

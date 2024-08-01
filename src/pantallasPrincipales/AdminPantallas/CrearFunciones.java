@@ -34,7 +34,7 @@ public class CrearFunciones extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuAdmin MAD= new MenuAdmin();
+                MenuAdministrador MAD= new MenuAdministrador();
                 MAD.iniciar();
                 dispose();
             }
