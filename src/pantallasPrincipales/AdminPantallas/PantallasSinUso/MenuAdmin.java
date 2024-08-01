@@ -1,13 +1,11 @@
-package pantallasPrincipales.AdminPantallas;
+package pantallasPrincipales.AdminPantallas.PantallasSinUso;
 
+import pantallasPrincipales.AdminPantallas.*;
 import pantallasPrincipales.AdminPantallas.PantallasAux.*;
-import pantallasPrincipales.CONEXION;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.sql.*;
 
 public class MenuAdmin extends JFrame {

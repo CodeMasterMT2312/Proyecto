@@ -1,4 +1,4 @@
-package pantallasPrincipales.AdminPantallas;
+package pantallasPrincipales.AdminPantallas.PantallasSinUso;
 
 import pantallasPrincipales.CONEXION;
 
