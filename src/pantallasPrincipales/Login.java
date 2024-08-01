@@ -1,6 +1,5 @@
 package pantallasPrincipales;
 
-import pantallasPrincipales.AdminPantallas.MenuAdmin;
 import pantallasPrincipales.AdminPantallas.MenuAdministrador;
 
 import javax.swing.*;
