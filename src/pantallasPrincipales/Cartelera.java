@@ -75,7 +75,7 @@ public class Cartelera extends JFrame {
                     // Información de la película
                     JTextArea infoArea = new JTextArea();
                     infoArea.setText("--------------------\n");
-                    infoArea.append("ID Funcion: " + rs.getInt("id_pelicula") + "\n");
+                    infoArea.append("ID Pelicula: " + rs.getInt("id_pelicula") + "\n");
                     infoArea.append("Título: " + rs.getString("titulo") + "\n");
                     infoArea.append("Género: " + rs.getString("genero") + "\n");
                     infoArea.append("Duración: " + rs.getString("duracion") + " minutos\n");

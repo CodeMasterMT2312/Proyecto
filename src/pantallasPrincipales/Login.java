@@ -62,6 +62,7 @@ public class Login extends JFrame {
                         cart.iniciar();
                         cart.MostrarCartelera();
                     } else if (TipoUser.equals("administrador")) {
+
                         MenuAdministrador menu = new MenuAdministrador();
                         menu.iniciar();
                     }
