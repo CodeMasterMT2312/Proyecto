@@ -17,7 +17,6 @@ public class Cartelera extends JFrame {
     private JPanel CarteleraPanel;
     private JPanel PanelInformacion; // Solo modificaremos este panel
     private JScrollPane PanelScroll;
-    private JButton Salir;
 
     /**
      * Constructor de la clase {@code Cartelera}.
