@@ -28,6 +28,11 @@ public class Cartelera extends JFrame {
                 dispose();
             }
         });
+
+        // Estilo del botón
+        adquirirBoletosButton.setForeground(Color.WHITE); // Color del texto
+        adquirirBoletosButton.setBackground(new Color(0x2196F3)); // Color de fondo
+
         iniciar();
     }
 
@@ -39,9 +44,15 @@ public class Cartelera extends JFrame {
 
         // Inicialización del panel principal y el panel de información
         CarteleraPanel = new JPanel(new BorderLayout());
+        CarteleraPanel.setBackground(new Color(0x333333)); // Color de fondo del panel principal
+
         PanelInformacion = new JPanel();
         PanelInformacion.setLayout(new BoxLayout(PanelInformacion, BoxLayout.Y_AXIS));
         PanelScroll = new JScrollPane(PanelInformacion); // Agregar PanelInformacion al JScrollPane
+
+        // Estilo del JScrollPane
+        PanelScroll.getVerticalScrollBar().setBackground(Color.WHITE); // Color de fondo de la barra de desplazamiento
+        PanelScroll.getHorizontalScrollBar().setBackground(Color.WHITE); // Color de fondo de la barra de desplazamiento
 
         // Configuración del panel principal
         setContentPane(CarteleraPanel);
@@ -71,10 +82,12 @@ public class Cartelera extends JFrame {
                     peliculaPanel.setLayout(new GridBagLayout());
                     GridBagConstraints gbc = new GridBagConstraints();
                     gbc.insets = new Insets(10, 10, 10, 10); // Espaciado entre los componentes
+                    peliculaPanel.setBackground(new Color(0x333333)); // Color de fondo del panel de película
 
                     // Información de la película
                     JTextArea infoArea = new JTextArea();
-                    infoArea.setText("--------------------\n");
+                    infoArea.setForeground(Color.WHITE); // Color del texto
+                    infoArea.setBackground(new Color(0x333333)); // Color de fondo del área de texto
                     infoArea.append("ID Pelicula: " + rs.getInt("id_pelicula") + "\n");
                     infoArea.append("Título: " + rs.getString("titulo") + "\n");
                     infoArea.append("Género: " + rs.getString("genero") + "\n");
