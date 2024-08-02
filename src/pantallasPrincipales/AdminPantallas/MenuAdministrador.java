@@ -5,6 +5,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.*;
 import pantallasPrincipales.AdminPantallas.PantallasAux.*;
 import pantallasPrincipales.CONEXION;
+import pantallasPrincipales.Login;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -44,6 +45,7 @@ public class MenuAdministrador extends JFrame {
     private JButton visualizarRegistroButton;
     private JTable IDVisu;
     private JTable VisuArea;
+    private JButton button1;
 
     /**
      * Constructor de la clase {@code MenuAdministrador}. Inicializa el panel y los componentes de la interfaz gráfica de usuario,
@@ -172,6 +174,14 @@ public class MenuAdministrador extends JFrame {
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Login log = new Login();
+                log.iniciar();
+                dispose();
             }
         });
     }
