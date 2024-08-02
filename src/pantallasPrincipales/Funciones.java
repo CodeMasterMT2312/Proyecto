@@ -38,33 +38,51 @@ public class Funciones extends JFrame {
         });
     }
 
-    public void MostrarFunciones() throws SQLException{
+    public void MostrarFunciones() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();
-        try(conn2) {
-            String query = "Select * from Funciones;";
-            Statement stmt = conn2.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+        try (conn2) {
+            String queryFunciones = "SELECT * FROM Funciones;";
+            Statement stmtFunciones = conn2.createStatement();
+            ResultSet rsFunciones = stmtFunciones.executeQuery(queryFunciones);
+
+            // Limpiar el área de texto antes de mostrar la información
             FuncionesArea.setText("");
-            while(rs.next()){
+
+            while (rsFunciones.next()) {
+                int idPelicula = rsFunciones.getInt("id_pelicula");
+
+                // Consulta adicional para obtener el título de la película
+                String queryTitulo = "SELECT titulo FROM Peliculas WHERE id_pelicula = ?";
+                PreparedStatement stmtTitulo = conn2.prepareStatement(queryTitulo);
+                stmtTitulo.setInt(1, idPelicula);
+                ResultSet rsTitulo = stmtTitulo.executeQuery();
+
+                String tituloPelicula = "";
+                if (rsTitulo.next()) {
+                    tituloPelicula = rsTitulo.getString("titulo");
+                }
+                rsTitulo.close();
+
+                // Mostrar los datos en el área de texto
                 FuncionesArea.append("--------------------\n");
-                FuncionesArea.append("ID: " + rs.getInt("id_funcion") + "\n");
-                FuncionesArea.append("Pelicula: " + rs.getString("id_pelicula") + "\n");
-                FuncionesArea.append("Sala: " + rs.getInt("id_sala") + "\n");
-                FuncionesArea.append("Fecha: " + rs.getString("fecha") + "\n");
-                FuncionesArea.append("Hora: " + rs.getString("hora") + "\n");
-                FuncionesArea.append("Idioma: " + rs.getString("idioma") + "\n");
-                FuncionesArea.append("Subtitulos: " + rs.getBoolean("subtitulos") + "\n");
+                FuncionesArea.append("ID: " + rsFunciones.getInt("id_funcion") + "\n");
+                FuncionesArea.append("Pelicula: " + tituloPelicula + "\n");
+                FuncionesArea.append("Sala: " + rsFunciones.getInt("id_sala") + "\n");
+                FuncionesArea.append("Fecha: " + rsFunciones.getString("fecha") + "\n");
+                FuncionesArea.append("Hora: " + rsFunciones.getString("hora") + "\n");
+                FuncionesArea.append("Idioma: " + rsFunciones.getString("idioma") + "\n");
+                FuncionesArea.append("Subtitulos: " + rsFunciones.getBoolean("subtitulos") + "\n");
                 FuncionesArea.append("--------------------\n\n");
             }
-            rs.close();
+            rsFunciones.close();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos: " + e.getMessage());
             e.printStackTrace();
         }
-
     }
+
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);
