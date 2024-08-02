@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="ReservaPanel" layout-manager="GridLayoutManager" row-count="12" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="645" height="706"/>
+      <xy x="20" y="20" width="645" height="710"/>
     </constraints>
     <properties>
       <background color="-13421773"/>
@@ -47,7 +47,8 @@
         <properties>
           <background color="-14575885"/>
           <foreground color="-1"/>
-          <text value="Guardar Reserva"/>
+          <icon value="img_ProyectoFinal/Save.png"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="a2b28" class="javax.swing.JLabel">
