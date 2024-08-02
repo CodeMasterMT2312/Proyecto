@@ -1,13 +1,15 @@
 package pantallasPrincipales.AdminPantallas.PantallasSinUso;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.*;
 import pantallasPrincipales.CONEXION;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +37,7 @@ public class Estadisticas extends  JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    GenEstadisticas();
+                    GenPDF();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -104,5 +106,72 @@ public class Estadisticas extends  JFrame {
             JOptionPane.showMessageDialog(null, "Error al generar estadísticas: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public void GenPDF() throws SQLException {
+        CONEXION conn = new CONEXION();
+        Connection conn2 = conn.conexion();
+        try (conn2) {
+            String ruta = System.getProperty("user.home");
+            PdfReader reader = new PdfReader("Formatos/FormatoCine.pdf"); // Ruta al PDF de plantilla
+            PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(ruta + "/Downloads/ReporteEstadisticas.pdf"));
+
+            // Obtener el contenido de la primera página
+            PdfContentByte canvas = stamper.getOverContent(1);
+
+            // Crear una tabla PDF y configurarla
+            PdfPTable tabla = new PdfPTable(5);
+            tabla.addCell("ID Estadistica");
+            tabla.addCell("ID Funcion");
+            tabla.addCell("Asientos Totales");
+            tabla.addCell("Asientos reservados");
+            tabla.addCell("Fecha");
+
+            String Query = "SELECT * FROM Estadisticas;";
+            Statement stmt = conn2.createStatement();
+            ResultSet rs = stmt.executeQuery(Query);
+
+            while (rs.next()) {
+                tabla.addCell(String.valueOf(rs.getInt("id_estadistica")));
+                tabla.addCell(String.valueOf(rs.getInt("id_funcion")));
+                tabla.addCell(String.valueOf(rs.getInt("asientos_totales")));
+                tabla.addCell(String.valueOf(rs.getInt("asientos_reservados")));
+                tabla.addCell(String.valueOf(rs.getDate("fecha")));
+            }
+
+            // Determinar el espacio ocupado por el formato
+            // Ajustar la posición y el tamaño de la tabla en la página
+
+            // Aquí puedes ajustar los valores para que se alineen con tu formato
+            float marginLeft = 50;
+            float marginRight = 50;
+            float marginTop = 225; // Espacio ocupado por el formato (ajustar según sea necesario)
+            float marginBottom = 50;
+            float pageWidth = PageSize.A4.getWidth();
+            float pageHeight = PageSize.A4.getHeight();
+            float contentWidth = pageWidth - marginLeft - marginRight;
+            float contentHeight = pageHeight - marginTop - marginBottom;
+
+            // Ajustar la posición de la tabla
+            ColumnText ct = new ColumnText(canvas);
+            ct.setSimpleColumn(marginLeft, marginBottom, marginLeft + contentWidth, marginBottom + contentHeight);
+            ct.addElement(tabla);
+            ct.go();
+
+            stamper.close();
+            reader.close();
+            JOptionPane.showMessageDialog(null, "Reporte generado con éxito en PDF.");
+        } catch (DocumentException | IOException e) {
+            JOptionPane.showMessageDialog(null, "Error al generar PDF: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            conn2.close();
+        }
+    }
+
+
+    public static void main(String[] args) {
+        Estadisticas estadisticas = new Estadisticas();
+        estadisticas.iniciar();
     }
 }
