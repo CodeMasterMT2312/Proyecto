@@ -5,6 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+/**
+ * La clase {@code Funciones} extiende {@code JFrame} y representa la ventana que muestra las funciones de las películas disponibles.
+ * <p>
+ * Esta ventana permite a los usuarios ver información sobre las funciones disponibles para las películas y realizar reservas.
+ * </p>
+ */
 public class Funciones extends JFrame {
     private JTextArea FuncionesArea;
     private JButton button1;
@@ -12,6 +18,13 @@ public class Funciones extends JFrame {
     private JLabel Funciones;
     private JPanel FuncionPanel;
 
+    /**
+     * Constructor de la clase {@code Funciones}.
+     * <p>
+     * Inicializa la ventana de funciones y configura los botones. El botón de reserva abre la ventana de reserva al hacer clic,
+     * y el otro botón regresa a la ventana de cartelera.
+     * </p>
+     */
     public Funciones() {
         super("Funciones");
         setContentPane(FuncionPanel);
@@ -38,6 +51,15 @@ public class Funciones extends JFrame {
         });
     }
 
+    /**
+     * Muestra la información sobre las funciones de las películas en el área de texto.
+     * <p>
+     * Este método consulta la base de datos para obtener la información de las funciones y sus películas correspondientes,
+     * y actualiza el área de texto con los detalles de cada función.
+     * </p>
+     *
+     * @throws SQLException Si ocurre un error al conectar o consultar la base de datos.
+     */
     public void MostrarFunciones() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();
@@ -83,6 +105,13 @@ public class Funciones extends JFrame {
         }
     }
 
+    /**
+     * Inicializa y configura la ventana de funciones.
+     * <p>
+     * Configura el {@code JFrame} para que se cierre al hacer clic en el botón de cierre, establece el tamaño de la ventana
+     * y la hace visible.
+     * </p>
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800,700);

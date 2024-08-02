@@ -14,6 +14,11 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.sql.*;
 
+/**
+ * La clase {@code MenuAdministrador} es una interfaz gráfica de usuario (GUI) para el menú de administración del sistema.
+ * Permite a los administradores realizar diversas operaciones como agregar, actualizar, eliminar y visualizar datos relacionados con
+ * películas, funciones, imágenes, usuarios y estadísticas.
+ */
 public class MenuAdministrador extends JFrame {
     private JTabbedPane tabbedPane1;
     private JPanel AdminPanel;
@@ -40,6 +45,10 @@ public class MenuAdministrador extends JFrame {
     private JTable IDVisu;
     private JTable VisuArea;
 
+    /**
+     * Constructor de la clase {@code MenuAdministrador}. Inicializa el panel y los componentes de la interfaz gráfica de usuario,
+     * y asigna los manejadores de eventos para los botones.
+     */
     public MenuAdministrador() {
         super("Menu Administrador");
         setContentPane(AdminPanel);
@@ -166,6 +175,12 @@ public class MenuAdministrador extends JFrame {
             }
         });
     }
+
+    /**
+     * Visualiza los datos de la base de datos en una tabla según la opción seleccionada en el {@code JComboBox} {@code CompletoBox}.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     // Metodo de Visulizacion de la Base de Datos
     public void VisualizarBDD() throws SQLException {
         // Obtener la opción seleccionada en el ComboBox
@@ -229,6 +244,11 @@ public class MenuAdministrador extends JFrame {
         }
     }
 
+    /**
+     * Genera un reporte de estadísticas en formato PDF y lo guarda en el directorio de descargas del usuario.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     // Metodo para Generar Estadisticas
     public void GenPDF() throws SQLException {
         CONEXION conn = new CONEXION();
@@ -291,6 +311,11 @@ public class MenuAdministrador extends JFrame {
         }
     }
 
+    /**
+     * Visualiza el registro en la tabla {@code IDVisu} según el ID proporcionado en {@code IdTabla}.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     // Metodo para ver registro por ID
     public void VisualizarRegistro() throws SQLException {
         String seleccion = (String) IDCombo.getSelectedItem();
@@ -397,6 +422,9 @@ public class MenuAdministrador extends JFrame {
         }
     }
 
+    /**
+     * Inicializa el Jframe
+     */
     // Metodo de Inicio
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

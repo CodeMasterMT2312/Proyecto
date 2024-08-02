@@ -8,6 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+/**
+ * La clase {@code ActualizarFunciones} proporciona una interfaz gráfica para actualizar registros de funciones en la base de datos.
+ * Extiende {@code JFrame} y utiliza un panel de contenido {@code ActFunPanel} con campos de texto, un combo box y botones para la actualización y navegación.
+ */
 public class ActualizarFunciones extends JFrame {
     private JButton button1;
     private JTextField IDFuncion;
@@ -16,6 +20,10 @@ public class ActualizarFunciones extends JFrame {
     private JButton actualizarButton;
     private JPanel ActFunPanel;
 
+    /**
+     * Constructor de la clase {@code ActualizarFunciones}.
+     * Inicializa la ventana con el título "Actualizar Función" y configura los manejadores de eventos para los botones.
+     */
     public ActualizarFunciones() {
         super("Actualizar Función");
         setContentPane(ActFunPanel);
@@ -39,12 +47,22 @@ public class ActualizarFunciones extends JFrame {
         });
     }
 
+    /**
+     * Configura la ventana para su visualización.
+     * Establece el tamaño, la operación de cierre y la visibilidad de la ventana.
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,500);
         setVisible(true);
     }
 
+    /**
+     * Actualiza una función en la base de datos según los valores ingresados en los campos de texto.
+     * Verifica que todos los campos estén llenos y actualiza el registro correspondiente en la tabla {@code Funciones}.
+     *
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     */
     public void ActualizarFuncion() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();

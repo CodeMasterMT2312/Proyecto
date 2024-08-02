@@ -11,6 +11,10 @@ import java.awt.event.ComponentEvent;
 import java.io.*;
 import java.sql.*;
 
+/**
+ * La clase {@code AgregarImagen} proporciona una interfaz gráfica para agregar imágenes a la base de datos.
+ * Extiende {@code JFrame} y utiliza un panel de contenido {@code ImagenPanel} con campos de texto, botones y un label para visualizar la imagen.
+ */
 public class AgregarImagen extends JFrame {
     private JTextField ID_Pelicula;
     private JButton examinarButton;
@@ -21,6 +25,10 @@ public class AgregarImagen extends JFrame {
     private JLabel ImagenVisualizar;
 
 
+    /**
+     * Constructor de la clase {@code AgregarImagen}.
+     * Inicializa la ventana con el título "Agregar Imagen" y configura los manejadores de eventos para los botones.
+     */
     public AgregarImagen() {
         super("Agregar Imagen");
         setContentPane(ImagenPanel);
@@ -52,12 +60,19 @@ public class AgregarImagen extends JFrame {
         });
     }
 
+    /**
+     * Configura la ventana para su visualización.
+     * Establece el tamaño, la operación de cierre y la visibilidad de la ventana.
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,500);
         setVisible(true);
     }
 
+    /**
+     * Abre un cuadro de diálogo para seleccionar una imagen y muestra la imagen seleccionada en el {@code JLabel} {@code ImagenVisualizar}.
+     */
     public void examinarImagen() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -71,6 +86,12 @@ public class AgregarImagen extends JFrame {
         }
     }
 
+    /**
+     * Muestra una imagen en el {@code JLabel} {@code ImagenVisualizar} escalada para ajustarse a su tamaño.
+     * Si el tamaño del {@code JLabel} cambia, la imagen se escala automáticamente.
+     *
+     * @param rutaImagen La ruta del archivo de imagen que se mostrará.
+     */
     private void mostrarImagenEnLabel(String rutaImagen) {
         final ImageIcon[] imageIcon = { new ImageIcon(rutaImagen) };
         final Image image = imageIcon[0].getImage();
@@ -101,6 +122,12 @@ public class AgregarImagen extends JFrame {
         ImagenVisualizar.repaint();
     }
 
+    /**
+     * Agrega una imagen a la base de datos con la información ingresada en los campos de texto.
+     *
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     * @throws FileNotFoundException Si el archivo de imagen no se encuentra en la ruta especificada.
+     */
     public void AgregarIMG() throws SQLException, FileNotFoundException {
         String rutaImagen = NomImagen.getText();
         if (rutaImagen.isEmpty()) {

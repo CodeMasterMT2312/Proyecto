@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 
+/**
+ * La clase {@code ActualizarUsuarios} proporciona una interfaz gráfica para actualizar registros de usuarios en la base de datos.
+ * Extiende {@code JFrame} y utiliza un panel de contenido {@code ActUsPanel} con campos de texto, un combo box y botones para actualizar usuarios.
+ */
 public class ActualizarUsuarios extends JFrame {
     private JButton button1;
     private JTextField CedulaText;
@@ -18,6 +22,10 @@ public class ActualizarUsuarios extends JFrame {
     private JPanel ActUsPanel;
     private JComboBox RolBox;
 
+    /**
+     * Constructor de la clase {@code ActualizarUsuarios}.
+     * Inicializa la ventana con el título "Actualizar Usuario" y configura los manejadores de eventos para los botones.
+     */
     public ActualizarUsuarios() {
         super("Actualizar Usuario");
         setContentPane(ActUsPanel);
@@ -41,12 +49,22 @@ public class ActualizarUsuarios extends JFrame {
         });
     }
 
+    /**
+     * Configura la ventana para su visualización.
+     * Establece el tamaño, la operación de cierre y la visibilidad de la ventana.
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,500);
         setVisible(true);
     }
 
+    /**
+     * Actualiza un usuario en la base de datos según los valores ingresados en los campos de texto.
+     * Verifica que todos los campos estén llenos y actualiza el registro correspondiente en la tabla {@code Usuarios}.
+     *
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     */
     public void ActualizarUser() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();

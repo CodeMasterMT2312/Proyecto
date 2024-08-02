@@ -6,12 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+/**
+ * La clase {@code Cartelera} extiende {@code JFrame} y representa la ventana que muestra la cartelera de películas.
+ * <p>
+ * Esta ventana permite a los usuarios ver información sobre las películas disponibles y adquirir boletos para las funciones.
+ * </p>
+ */
 public class Cartelera extends JFrame {
     private JButton adquirirBoletosButton;
     private JPanel CarteleraPanel;
     private JPanel PanelInformacion; // Solo modificaremos este panel
     private JScrollPane PanelScroll;
 
+    /**
+     * Constructor de la clase {@code Cartelera}.
+     * <p>
+     * Inicializa la ventana de la cartelera y configura el botón para adquirir boletos. El botón cambia de color
+     * y tiene un escuchador de eventos que abre la ventana de funciones al hacer clic.
+     * </p>
+     */
     public Cartelera() {
         super("Cartelera");
         adquirirBoletosButton = new JButton("Adquirir Boletos");
@@ -36,6 +49,13 @@ public class Cartelera extends JFrame {
         iniciar();
     }
 
+    /**
+     * Inicializa y configura la ventana de la cartelera.
+     * <p>
+     * Configura el {@code JFrame} con un panel principal y un panel de información con desplazamiento.
+     * También agrega el botón para adquirir boletos al panel principal.
+     * </p>
+     */
     public void iniciar() {
         // Configura el JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,6 +84,15 @@ public class Cartelera extends JFrame {
         setVisible(true); // Muestra el JFrame
     }
 
+    /**
+     * Muestra la cartelera de películas en el panel de información.
+     * <p>
+     * Este método consulta la base de datos para obtener información sobre las películas y actualiza el panel de
+     * información con los detalles de cada película, incluyendo una imagen y una descripción formateada.
+     * </p>
+     *
+     * @throws SQLException Si ocurre un error al conectar o consultar la base de datos.
+     */
     public void MostrarCartelera() throws SQLException {
         CONEXION c = new CONEXION();
         Connection conn = c.conexion();
@@ -133,6 +162,18 @@ public class Cartelera extends JFrame {
         }
     }
 
+    /**
+     * Muestra una imagen de la película en el {@code JLabel} proporcionado.
+     * <p>
+     * Este método consulta la base de datos para obtener la imagen asociada con el ID de la película y ajusta su tamaño
+     * antes de establecerla en el {@code JLabel}.
+     * </p>
+     *
+     * @param idPelicula El ID de la película cuya imagen se debe mostrar.
+     * @param imagenLabel El {@code JLabel} en el que se debe mostrar la imagen.
+     * @param conn La conexión a la base de datos.
+     * @throws SQLException Si ocurre un error al conectar o consultar la base de datos.
+     */
     private void mostrarImagen(int idPelicula, JLabel imagenLabel, Connection conn) throws SQLException {
         String query2 = "SELECT imagen FROM ImgPeliculas WHERE id_pelicula = ?;";
         PreparedStatement pstmt = conn.prepareStatement(query2);
@@ -155,6 +196,17 @@ public class Cartelera extends JFrame {
         }
     }
 
+    /**
+     * Formatea el texto a varias líneas para que no supere la longitud máxima de línea especificada.
+     * <p>
+     * Este método divide el texto en palabras y las organiza en líneas para que cada línea no exceda el número de caracteres
+     * especificado.
+     * </p>
+     *
+     * @param text El texto que se debe formatear.
+     * @param maxLineLength La longitud máxima permitida para cada línea.
+     * @return El texto formateado a varias líneas.
+     */
     private String formatTextToMultiline(String text, int maxLineLength) {
         StringBuilder formattedText = new StringBuilder();
         String[] words = text.split(" ");

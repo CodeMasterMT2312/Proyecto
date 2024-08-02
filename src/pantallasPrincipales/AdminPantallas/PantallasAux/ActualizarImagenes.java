@@ -11,7 +11,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 
-
+/**
+ * La clase {@code ActualizarImagenes} proporciona una interfaz gráfica para actualizar registros de imágenes en la base de datos.
+ * Extiende {@code JFrame} y utiliza un panel de contenido {@code ActImgPanel} con campos de texto, un combo box, botones para examinar y actualizar imágenes, y un archivo de imagen.
+ */
 public class ActualizarImagenes extends  JFrame {
     private JButton button1;
     private JTextField textField1;
@@ -22,6 +25,10 @@ public class ActualizarImagenes extends  JFrame {
     private JPanel ActImgPanel;
     private File imagenFile;
 
+    /**
+     * Constructor de la clase {@code ActualizarImagenes}.
+     * Inicializa la ventana con el título "Actualizar Imágenes" y configura los manejadores de eventos para los botones.
+     */
     public ActualizarImagenes() {
         super("Actualizar Imagenes");
         setContentPane(ActImgPanel);
@@ -51,12 +58,22 @@ public class ActualizarImagenes extends  JFrame {
         });
     }
 
+    /**
+     * Configura la ventana para su visualización.
+     * Establece el tamaño, la operación de cierre y la visibilidad de la ventana.
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700,700);
         setVisible(true);
     }
 
+    /**
+     * Actualiza una imagen en la base de datos según los valores ingresados en los campos de texto y el archivo de imagen seleccionado.
+     * Verifica que todos los campos estén llenos y actualiza el registro correspondiente en la tabla {@code ImgPeliculas}.
+     *
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     */
     public void ActualizarImagen() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();
@@ -119,6 +136,10 @@ public class ActualizarImagenes extends  JFrame {
         }
     }
 
+    /**
+     * Abre un cuadro de diálogo para seleccionar un archivo de imagen.
+     * Muestra el nombre del archivo seleccionado en el campo de texto {@code CambioText}.
+     */
     public void examinarImagen() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);

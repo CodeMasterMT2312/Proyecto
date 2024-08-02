@@ -6,7 +6,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-
+/**
+ * La clase {@code CrearFunciones} proporciona una interfaz gráfica para agregar funciones a la base de datos.
+ * Extiende {@code JFrame} y utiliza un panel de contenido {@code CrearFuncionPanel} con campos de texto y botones.
+ */
 public class CrearFunciones extends JFrame {
     private JTextField ID_Pelicula;
     private JTextField ID_Sala;
@@ -18,6 +21,10 @@ public class CrearFunciones extends JFrame {
     private JButton button1;
     private JPanel CrearFuncionPanel;
 
+    /**
+     * Constructor de la clase {@code CrearFunciones}.
+     * Inicializa la ventana con el título "Agregar Funciones" y configura los manejadores de eventos para los botones.
+     */
     public CrearFunciones() {
         super("Agregar Funciones");
         setContentPane(CrearFuncionPanel);
@@ -41,12 +48,21 @@ public class CrearFunciones extends JFrame {
         });
     }
 
+    /**
+     * Configura la ventana para su visualización.
+     * Establece el tamaño, la operación de cierre y la visibilidad de la ventana.
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650,600);
         setVisible(true);
     }
 
+    /**
+     * Agrega una nueva función a la base de datos con la información ingresada en los campos de texto.
+     *
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     */
     public void AgregarFunciones() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();

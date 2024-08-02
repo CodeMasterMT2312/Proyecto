@@ -324,10 +324,11 @@
               </component>
               <component id="10f5c" class="javax.swing.JButton" binding="examinarButton" default-binding="true">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="GENERAR INFORME"/>
+                  <icon value="img_ProyectoFinal/DescargarIConReSize.png"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>

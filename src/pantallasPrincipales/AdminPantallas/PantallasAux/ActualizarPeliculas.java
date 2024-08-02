@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 
+/**
+ * La clase {@code ActualizarPeliculas} proporciona una interfaz gráfica para actualizar registros de películas en la base de datos.
+ * Extiende {@code JFrame} y utiliza un panel de contenido {@code ActuPeliPanel} con campos de texto, un combo box y botones para actualizar películas.
+ */
 public class ActualizarPeliculas extends JFrame {
     private JButton Regresar;
     private JTextField ID_Pelicula;
@@ -17,6 +21,10 @@ public class ActualizarPeliculas extends JFrame {
     private JComboBox CampoCombo;
     private JPanel ActuPeliPanel;
 
+    /**
+     * Constructor de la clase {@code ActualizarPeliculas}.
+     * Inicializa la ventana con el título "Actualizar Pelicula" y configura los manejadores de eventos para los botones.
+     */
     public ActualizarPeliculas() {
         super("Actualizar Pelicula");
         setContentPane(ActuPeliPanel);
@@ -40,12 +48,22 @@ public class ActualizarPeliculas extends JFrame {
         });
     }
 
+    /**
+     * Configura la ventana para su visualización.
+     * Establece el tamaño, la operación de cierre y la visibilidad de la ventana.
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,500);
         setVisible(true);
     }
 
+    /**
+     * Actualiza una película en la base de datos según los valores ingresados en los campos de texto.
+     * Verifica que todos los campos estén llenos y actualiza el registro correspondiente en la tabla {@code Peliculas}.
+     *
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     */
     public void ActualizarPelicula() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2  = conn.conexion();

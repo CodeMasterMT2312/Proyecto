@@ -7,6 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+/**
+ * La clase {@code Create} proporciona una interfaz gráfica para agregar una película a la base de datos.
+ * Extiende {@code JFrame} y utiliza un panel de contenido {@code CrearPanel} con campos de texto, áreas de texto y botones.
+ */
+
 public class Create extends JFrame {
     private JButton button1;
     private JTextField TituloText;
@@ -20,6 +25,10 @@ public class Create extends JFrame {
     private JTextArea SinopsisArea;
     private JTextArea RepartoArea;
 
+    /**
+     * Constructor de la clase {@code Create}.
+     * Inicializa la ventana con el título "Agregar Peliculas" y configura los manejadores de eventos para los botones.
+     */
     public Create() {
         super("Agregar Peliculas");
         setContentPane(CrearPanel);
@@ -43,6 +52,11 @@ public class Create extends JFrame {
         });
     }
 
+    /**
+     * Agrega una nueva película a la base de datos con la información ingresada en los campos de texto y áreas de texto.
+     *
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     */
     public void AgregarPelicula() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();
@@ -76,6 +90,10 @@ public class Create extends JFrame {
         }
 
     }
+    /**
+     * Configura la ventana para su visualización.
+     * Establece el tamaño, la operación de cierre y la visibilidad de la ventana.
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,500);

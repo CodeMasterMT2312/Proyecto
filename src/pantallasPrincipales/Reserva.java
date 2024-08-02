@@ -6,7 +6,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * La clase {@code Reserva} representa una ventana para reservar butacas en una función.
+ * Esta clase permite a los usuarios ingresar información sobre la reserva y guardar los datos en la base de datos.
+ */
 public class Reserva extends JFrame {
     private JTextField NumAsiento;
     private JButton siguienteButton;
@@ -15,6 +18,11 @@ public class Reserva extends JFrame {
     private JButton Regresar;
     private JTextField IDFuncion;
     private JTextField CedulaText;
+
+    /**
+     * Constructor de la clase {@code Reserva}.
+     * Inicializa la ventana y configura los eventos de los botones.
+     */
 
     public Reserva() {
         super("Reservar Butacas");
@@ -44,6 +52,13 @@ public class Reserva extends JFrame {
             }
         });
     }
+    /**
+     * Guarda la reserva en la base de datos.
+     * Valida los asientos proporcionados, verifica si están reservados,
+     * crea una nueva reserva y actualiza las estadísticas.
+     *
+     * @throws SQLException Si ocurre un error al conectar o realizar operaciones en la base de datos.
+     */
     public void GuardarReserva() throws SQLException {
         CONEXION conn = new CONEXION();
         Connection conn2 = conn.conexion();
@@ -235,12 +250,22 @@ public class Reserva extends JFrame {
         }
     }
 
+    /**
+     * Inicia la ventana de reserva.
+     */
     public void iniciar(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650,700);
         setVisible(true);
     }
 
+    /**
+     * Actualiza las estadísticas de la función reservada en la base de datos.
+     *
+     * @param conn2 La conexión a la base de datos.
+     * @param idFuncion El ID de la función cuya estadística se actualizará.
+     * @throws SQLException Si ocurre un error al conectar o realizar operaciones en la base de datos.
+     */
     public void ActualizarEstadisticas(Connection conn2, int idFuncion) throws SQLException {
         // Contar el número total de asientos para la función
         String totalAsientosQuery = "SELECT COUNT(*) FROM Asientos WHERE id_sala = (SELECT id_sala FROM Funciones WHERE id_funcion = ?)";
