@@ -18,6 +18,7 @@ public class Reserva extends JFrame {
     private JButton Regresar;
     private JTextField IDFuncion;
     private JTextField CedulaText;
+    private JButton button1;
 
     /**
      * Constructor de la clase {@code Reserva}.
@@ -49,6 +50,14 @@ public class Reserva extends JFrame {
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Login logOut = new Login();
+                logOut.iniciar();
+                dispose();
             }
         });
     }

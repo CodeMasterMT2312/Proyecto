@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="pantallasPrincipales.Reserva">
-  <grid id="27dc6" binding="ReservaPanel" layout-manager="GridLayoutManager" row-count="12" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="ReservaPanel" layout-manager="GridLayoutManager" row-count="12" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="645" height="710"/>
+      <xy x="20" y="20" width="733" height="714"/>
     </constraints>
     <properties>
       <background color="-13421773"/>
+      <focusable value="false"/>
     </properties>
     <border type="none"/>
     <children>
       <component id="3e062" class="javax.swing.JLabel">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="4" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="4" use-parent-layout="false"/>
         </constraints>
         <properties>
           <icon value="img_ProyectoFinal/Imagen1.png"/>
@@ -21,7 +22,7 @@
       </component>
       <component id="e815e" class="javax.swing.JLabel">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
         </constraints>
         <properties>
           <foreground color="-1"/>
@@ -31,7 +32,7 @@
       </component>
       <component id="4f763" class="javax.swing.JTextField" binding="NumAsiento">
         <constraints>
-          <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false">
+          <grid row="10" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -42,7 +43,7 @@
       </component>
       <component id="cf" class="javax.swing.JButton" binding="siguienteButton" default-binding="true">
         <constraints>
-          <grid row="11" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="11" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-14575885"/>
@@ -53,7 +54,7 @@
       </component>
       <component id="a2b28" class="javax.swing.JLabel">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
         </constraints>
         <properties>
           <foreground color="-1"/>
@@ -63,7 +64,7 @@
       </component>
       <component id="532a" class="javax.swing.JTextField" binding="BoletosCantidad">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false">
+          <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -85,18 +86,9 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="aecc9" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <foreground color="-1"/>
-          <text value="ELECCION BUTACA"/>
-        </properties>
-      </component>
       <component id="c2b26" class="javax.swing.JLabel">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
         </constraints>
         <properties>
           <foreground color="-1"/>
@@ -106,7 +98,7 @@
       </component>
       <component id="dc1b7" class="javax.swing.JTextField" binding="IDFuncion">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false">
+          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -126,7 +118,7 @@
       </component>
       <component id="d3016" class="javax.swing.JTextField" binding="CedulaText">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false">
+          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="4" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -137,7 +129,7 @@
       </component>
       <component id="4483d" class="javax.swing.JLabel">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="4" use-parent-layout="false"/>
         </constraints>
         <properties>
           <foreground color="-1"/>
@@ -146,9 +138,33 @@
       </component>
       <hspacer id="1cd3a">
         <constraints>
-          <grid row="0" column="2" row-span="12" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="4" use-parent-layout="false"/>
+          <grid row="0" column="3" row-span="12" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="4" use-parent-layout="false"/>
         </constraints>
       </hspacer>
+      <component id="ae29" class="javax.swing.JButton" binding="button1" default-binding="true">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <defaultCapable value="false"/>
+          <focusPainted value="false"/>
+          <focusable value="false"/>
+          <icon value="img_ProyectoFinal/cerrar-sesionReSize.png"/>
+          <opaque value="false"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="aecc9" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-1"/>
+          <text value="ELECCION BUTACA"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
