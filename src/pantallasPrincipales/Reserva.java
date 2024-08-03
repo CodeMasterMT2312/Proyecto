@@ -245,7 +245,7 @@ public class Reserva extends JFrame {
                     rollbackEx.printStackTrace();
                 }
             }
-            JOptionPane.showMessageDialog(null, "Error al conectar a la base de datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             e.printStackTrace();
         } finally {
             if (conn2 != null) {

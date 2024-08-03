@@ -10,6 +10,7 @@ import pantallasPrincipales.Login;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -36,8 +37,6 @@ public class MenuAdministrador extends JFrame {
     private JButton eliminarPeliculaButton;
     private JButton verBDDButton;
     private JButton examinarButton;
-    private JTextField ExamPath;
-    private JButton generarEstadisticasButton;
     private JTabbedPane tabbedPane2;
     private JComboBox CompletoBox;
     private JComboBox IDCombo;
@@ -333,6 +332,7 @@ public class MenuAdministrador extends JFrame {
 
         if (idStr == null || idStr.isEmpty()) {
             System.out.println("ID no proporcionado o está vacío");
+            JOptionPane.showMessageDialog(null, "ID no proporcionado o está vacío");
             return;
         }
 
@@ -341,6 +341,7 @@ public class MenuAdministrador extends JFrame {
             id = Integer.parseInt(idStr);
         } catch (NumberFormatException e) {
             System.out.println("ID no es un número válido");
+            JOptionPane.showMessageDialog(null, "ID no es un número válido"+e.getMessage());
             return;
         }
 
@@ -354,30 +355,39 @@ public class MenuAdministrador extends JFrame {
 
         try (conn2) {
             String query = "";
+            String[] columnas;
             switch (seleccion) {
                 case "Usuarios":
                     query = "SELECT * FROM `Usuarios` WHERE Cedula = ?;";
+                    columnas = new String[]{"Cedula", "Nombre", "Apellido", "Correo", "Contrasenia"};
                     break;
                 case "Peliculas":
                     query = "SELECT id_pelicula, titulo, director, genero, duracion, fecha_estreno, clasificacion, reparto, descripcion FROM `Peliculas` WHERE id_pelicula = ?;";
+                    columnas = new String[]{"ID", "Título", "Director", "Género", "Duración", "Fecha de estreno", "Clasificación", "Reparto", "Descripción"};
                     break;
                 case "Salas":
                     query = "SELECT * FROM `Salas` WHERE id_sala = ?;";
+                    columnas = new String[]{"ID", "Nombre", "Capacidad", "Tipo"};
                     break;
                 case "Reservas":
                     query = "SELECT * FROM `Reservas` WHERE id_reserva = ?;";
+                    columnas = new String[]{"ID", "Nombre", "Capacidad", "Tipo"};
                     break;
                 case "Funciones":
                     query = "SELECT * FROM `Funciones` WHERE id_funcion = ?;";
+                    columnas = new String[]{"ID", "ID Pelicula", "ID Sala", "Fecha", "Hora","Subtitulos"};
                     break;
                 case "Estadisticas":
                     query = "SELECT * FROM `Estadisticas` WHERE id_estadistica = ?;";
+                    columnas = new String[]{"ID", "Funcion","Asientos Totales","Asientos Reservados","Fecha"};
                     break;
                 case "Asientos_Reservas":
                     query = "SELECT * FROM `Asientos_Reservas` WHERE id_reserva = ?;";
+                    columnas = new String[]{"ID Reserva", "ID Asiento"};
                     break;
                 case "Asientos":
                     query = "SELECT * FROM `Asientos` WHERE id_asiento = ?;";
+                    columnas = new String[]{"ID", "ID Sala", "Fila", "Columna","Tipo"};
                     break;
                 default:
                     System.out.println("Selección no válida");
@@ -391,24 +401,23 @@ public class MenuAdministrador extends JFrame {
 
             if (!rs.isBeforeFirst()) {
                 System.out.println("No se encontraron resultados");
+                JOptionPane.showMessageDialog(null, "No se encontraron resultados");
                 return;
             }
 
             DefaultTableModel model = new DefaultTableModel();
 
-            try {
-                int columnCount = rs.getMetaData().getColumnCount();
+            int columnCount = columnas.length ;
 
-                // Obtener los nombres de las columnas y añadirlos al modelo
-                for (int i = 1; i <= columnCount; i++) {
-                    model.addColumn(rs.getMetaData().getColumnName(i));
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al obtener los nombres de las columnas: " + e.getMessage());
+            try{
+            // Obtener los nombres de las columnas y añadirlos al modelo
+            for (int i = 0; i < columnCount; i++) {
+                model.addColumn(columnas[i]);
+            }}catch (Exception e) {
+                System.out.println("Error al añadir columnas al modelo: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al añadir columnas al modelo:"+e.getMessage());
                 e.printStackTrace();
-                return;
             }
-
             try {
                 // Obtener los datos de las filas y añadirlos al modelo
                 while (rs.next()) {
@@ -417,18 +426,21 @@ public class MenuAdministrador extends JFrame {
                         rowData[i - 1] = rs.getObject(i);
                     }
                     model.addRow(rowData);
+
                 }
             } catch (SQLException e) {
                 System.out.println("Error al obtener los datos de las filas: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al obtener los datos de las filas:"+e.getMessage());
                 e.printStackTrace();
             }
 
             // Establecer el modelo en el JTable
             IDVisu.setModel(model);
-
+            IdTabla.setText("");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al ejecutar la consulta SQL");
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta SQL: "+e.getMessage());
         }
     }
 
