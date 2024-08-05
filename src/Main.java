@@ -6,6 +6,9 @@ import pantallasPrincipales.*;
  * Este es el punto de entrada de la aplicación que crea una instancia de la clase {@code Login}
  * y llama al método {@code iniciar()} para comenzar el proceso de autenticación.
  * </p>
+ *
+ * @author Mathias Teran
+ * @version 2.1
  */
 public class Main {
     public static void main(String[] args) {

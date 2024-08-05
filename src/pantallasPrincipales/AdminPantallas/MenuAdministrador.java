@@ -293,10 +293,10 @@ public class MenuAdministrador extends JFrame {
             // Determinar el espacio ocupado por el formato
             // Ajustar la posición y el tamaño de la tabla en la página
 
-            // Aquí puedes ajustar los valores para que se alineen con tu formato
+            // ajustar los valores  con el formato
             float marginLeft = 50;
             float marginRight = 50;
-            float marginTop = 225; // Espacio ocupado por el formato (ajustar según sea necesario)
+            float marginTop = 225; // Espacio ocupado por el formato
             float marginBottom = 50;
             float pageWidth = PageSize.A4.getWidth();
             float pageHeight = PageSize.A4.getHeight();
