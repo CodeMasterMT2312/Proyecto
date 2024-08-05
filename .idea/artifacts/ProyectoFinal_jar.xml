@@ -3,8 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ProyectoFinal_jar</output-path>
     <root id="archive" name="ProyectoFinal.jar">
       <element id="module-output" name="ProyectoFinal" />
-      <element id="extracted-dir" path="$USER_HOME$/3D Objects/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/3D Objects/BD_Alumnos/driver-PDF/itext5-itextpdf-5.5.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/3D Objects/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
