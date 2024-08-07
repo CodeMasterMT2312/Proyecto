@@ -8,8 +8,7 @@ import pantallasPrincipales.CONEXION;
 import pantallasPrincipales.Login;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -194,10 +193,15 @@ public class MenuAdministrador extends JFrame {
     public void VisualizarBDD() throws SQLException {
         // Obtener la opción seleccionada en el ComboBox
         String seleccion = (String) CompletoBox.getSelectedItem();
-        CONEXION conn = new CONEXION();
-        Connection conn2 = conn.conexion();
-        try (conn2) {
-            String query = "";
+
+        // Establecer la conexión a la base de datos
+        try (Connection conn2 = new CONEXION().conexion()) {
+            if (conn2 == null) {
+                JOptionPane.showMessageDialog(null, "Conexión a la base de datos fallida");
+                return;
+            }
+
+            String query;
             // Seleccionar la consulta SQL según la opción seleccionada
             switch (seleccion) {
                 case "Usuarios":
@@ -224,34 +228,67 @@ public class MenuAdministrador extends JFrame {
                 case "Asientos":
                     query = "SELECT * FROM `Asientos`;";
                     break;
+                case "ImgPeliculas":
+                    query = "SELECT id_imagen, Nombre_imagen, imagen, id_pelicula FROM `ImgPeliculas`;";
+                    break;
                 default:
+                    JOptionPane.showMessageDialog(null, "Selección no válida");
                     return; // Si no se selecciona nada válido, salir del método
             }
 
-            Statement stmt = conn2.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            int columnCount = rs.getMetaData().getColumnCount();
+            try (Statement stmt = conn2.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
 
-            // Crear modelo de tabla
-            DefaultTableModel model = new DefaultTableModel();
+                int columnCount = rs.getMetaData().getColumnCount();
 
-            // Obtener los nombres de las columnas y añadirlos al modelo
-            for (int i = 1; i <= columnCount; i++) {
-                model.addColumn(rs.getMetaData().getColumnName(i));
-            }
+                // Crear modelo de tabla
+                DefaultTableModel model = new DefaultTableModel();
 
-            // Obtener los datos de las filas y añadirlos al modelo
-            while (rs.next()) {
-                Object[] rowData = new Object[columnCount];
+                // Obtener los nombres de las columnas y añadirlos al modelo
                 for (int i = 1; i <= columnCount; i++) {
-                    rowData[i - 1] = rs.getObject(i);
+                    model.addColumn(rs.getMetaData().getColumnName(i));
                 }
-                model.addRow(rowData);
+
+                // Obtener los datos de las filas y añadirlos al modelo
+                while (rs.next()) {
+                    Object[] rowData = new Object[columnCount];
+                    for (int i = 1; i <= columnCount; i++) {
+                        if (seleccion.equals("ImgPeliculas") && i == 3) { // Suponiendo que la imagen está en la columna 3
+                            byte[] imageData = rs.getBytes(i);
+                            if (imageData != null) {
+                                ImageIcon imageIcon = new ImageIcon(imageData);
+                                rowData[i - 1] = imageIcon;
+                            } else {
+                                rowData[i - 1] = null;
+                            }
+                        } else {
+                            rowData[i - 1] = rs.getObject(i);
+                        }
+                    }
+                    model.addRow(rowData);
+                }
+
+                // Establecer el modelo en el JTable (VisuArea)
+                VisuArea.setModel(model);
+
+                // Configurar el renderizador de imágenes si se seleccionó "ImgPeliculas"
+                if (seleccion.equals("ImgPeliculas")) {
+                    TableColumnModel columnModel = VisuArea.getColumnModel();
+                    TableColumn imageColumn = columnModel.getColumn(2); // La columna de imagen
+                    imageColumn.setCellRenderer(new ImageCellRenderer());
+
+                    // Ajustar el ancho de la columna para que se ajuste a las imágenes redimensionadas
+                    imageColumn.setPreferredWidth(ImageCellRenderer.IMAGE_WIDTH + 10);
+                    // Ajustar la altura de las filas para acomodar las imágenes
+                    int rowHeight = ImageCellRenderer.IMAGE_HEIGHT + 10; // Ajusta este valor según sea necesario
+                    VisuArea.setRowHeight(rowHeight);
+                    // Actualizar el JTable
+                    VisuArea.revalidate();
+                    VisuArea.repaint();
+                }
             }
-            // Establecer el modelo en el JTable (VisuArea)
-            VisuArea.setModel(model);
         }
     }
+
 
     /**
      * Genera un reporte de estadísticas en formato PDF y lo guarda en el directorio de descargas del usuario.
@@ -341,7 +378,7 @@ public class MenuAdministrador extends JFrame {
             id = Integer.parseInt(idStr);
         } catch (NumberFormatException e) {
             System.out.println("ID no es un número válido");
-            JOptionPane.showMessageDialog(null, "ID no es un número válido"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "ID no es un número válido: " + e.getMessage());
             return;
         }
 
@@ -353,96 +390,129 @@ public class MenuAdministrador extends JFrame {
             return;
         }
 
-        try (conn2) {
-            String query = "";
-            String[] columnas;
-            switch (seleccion) {
-                case "Usuarios":
-                    query = "SELECT * FROM `Usuarios` WHERE Cedula = ?;";
-                    columnas = new String[]{"Cedula", "Nombre", "Apellido", "Correo", "Contrasenia"};
-                    break;
-                case "Peliculas":
-                    query = "SELECT id_pelicula, titulo, director, genero, duracion, fecha_estreno, clasificacion, reparto, descripcion FROM `Peliculas` WHERE id_pelicula = ?;";
-                    columnas = new String[]{"ID", "Título", "Director", "Género", "Duración", "Fecha de estreno", "Clasificación", "Reparto", "Descripción"};
-                    break;
-                case "Salas":
-                    query = "SELECT * FROM `Salas` WHERE id_sala = ?;";
-                    columnas = new String[]{"ID", "Nombre", "Capacidad", "Tipo"};
-                    break;
-                case "Reservas":
-                    query = "SELECT * FROM `Reservas` WHERE id_reserva = ?;";
-                    columnas = new String[]{"ID", "Nombre", "Capacidad", "Tipo"};
-                    break;
-                case "Funciones":
-                    query = "SELECT * FROM `Funciones` WHERE id_funcion = ?;";
-                    columnas = new String[]{"ID", "ID Pelicula", "ID Sala", "Fecha", "Hora","Subtitulos"};
-                    break;
-                case "Estadisticas":
-                    query = "SELECT * FROM `Estadisticas` WHERE id_estadistica = ?;";
-                    columnas = new String[]{"ID", "Funcion","Asientos Totales","Asientos Reservados","Fecha"};
-                    break;
-                case "Asientos_Reservas":
-                    query = "SELECT * FROM `Asientos_Reservas` WHERE id_reserva = ?;";
-                    columnas = new String[]{"ID Reserva", "ID Asiento"};
-                    break;
-                case "Asientos":
-                    query = "SELECT * FROM `Asientos` WHERE id_asiento = ?;";
-                    columnas = new String[]{"ID", "ID Sala", "Fila", "Columna","Tipo"};
-                    break;
-                default:
-                    System.out.println("Selección no válida");
-                    return;
-            }
+        String query = "";
+        String[] columnas;
+        switch (seleccion) {
+            case "Usuarios":
+                query = "SELECT * FROM `Usuarios` WHERE Cedula = ?;";
+                columnas = new String[]{"Cedula", "Nombre", "Apellido", "Correo", "Contraseña"};
+                break;
+            case "Peliculas":
+                query = "SELECT id_pelicula, titulo, director, genero, duracion, fecha_estreno, clasificacion, reparto, descripcion FROM `Peliculas` WHERE id_pelicula = ?;";
+                columnas = new String[]{"ID", "Título", "Director", "Género", "Duración", "Fecha de estreno", "Clasificación", "Reparto", "Descripción"};
+                break;
+            case "Salas":
+                query = "SELECT * FROM `Salas` WHERE id_sala = ?;";
+                columnas = new String[]{"ID", "Nombre", "Capacidad", "Tipo"};
+                break;
+            case "Reservas":
+                query = "SELECT * FROM `Reservas` WHERE id_reserva = ?;";
+                columnas = new String[]{"ID", "Nombre", "Capacidad", "Tipo"};
+                break;
+            case "Funciones":
+                query = "SELECT * FROM `Funciones` WHERE id_funcion = ?;";
+                columnas = new String[]{"ID", "ID Pelicula", "ID Sala", "Fecha", "Hora", "Subtitulos"};
+                break;
+            case "Estadisticas":
+                query = "SELECT * FROM `Estadisticas` WHERE id_estadistica = ?;";
+                columnas = new String[]{"ID", "Funcion", "Asientos Totales", "Asientos Reservados", "Fecha"};
+                break;
+            case "Asientos_Reservas":
+                query = "SELECT * FROM `Asientos_Reservas` WHERE id_reserva = ?;";
+                columnas = new String[]{"ID Reserva", "ID Asiento"};
+                break;
+            case "Asientos":
+                query = "SELECT * FROM `Asientos` WHERE id_asiento = ?;";
+                columnas = new String[]{"ID", "ID Sala", "Fila", "Columna", "Tipo"};
+                break;
+            case "ImgPeliculas":
+                query = "SELECT id_imagen, Nombre_imagen, imagen, id_pelicula FROM `ImgPeliculas` WHERE id_imagen = ?;";
+                columnas = new String[]{"ID", "Nombre Imagen", "Imagen", "ID Pelicula"};
+                break;
+            default:
+                System.out.println("Selección no válida");
+                return;
+        }
 
-            PreparedStatement pstmt = conn2.prepareStatement(query);
+        try (PreparedStatement pstmt = conn2.prepareStatement(query)) {
             pstmt.setInt(1, id);
 
-            ResultSet rs = pstmt.executeQuery();
-
-            if (!rs.isBeforeFirst()) {
-                System.out.println("No se encontraron resultados");
-                JOptionPane.showMessageDialog(null, "No se encontraron resultados");
-                return;
-            }
-
-            DefaultTableModel model = new DefaultTableModel();
-
-            int columnCount = columnas.length ;
-
-            try{
-            // Obtener los nombres de las columnas y añadirlos al modelo
-            for (int i = 0; i < columnCount; i++) {
-                model.addColumn(columnas[i]);
-            }}catch (Exception e) {
-                System.out.println("Error al añadir columnas al modelo: " + e.getMessage());
-                JOptionPane.showMessageDialog(null, "Error al añadir columnas al modelo:"+e.getMessage());
-                e.printStackTrace();
-            }
-            try {
-                // Obtener los datos de las filas y añadirlos al modelo
-                while (rs.next()) {
-                    Object[] rowData = new Object[rs.getMetaData().getColumnCount()];
-                    for (int i = 1; i <= rowData.length; i++) {
-                        rowData[i - 1] = rs.getObject(i);
-                    }
-                    model.addRow(rowData);
-
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (!rs.isBeforeFirst()) {
+                    System.out.println("No se encontraron resultados");
+                    JOptionPane.showMessageDialog(null, "No se encontraron resultados");
+                    return;
                 }
-            } catch (SQLException e) {
-                System.out.println("Error al obtener los datos de las filas: " + e.getMessage());
-                JOptionPane.showMessageDialog(null, "Error al obtener los datos de las filas:"+e.getMessage());
-                e.printStackTrace();
-            }
 
-            // Establecer el modelo en el JTable
-            IDVisu.setModel(model);
-            IdTabla.setText("");
+                DefaultTableModel model = new DefaultTableModel();
+                int columnCount = columnas.length;
+
+                try {
+                    // Obtener los nombres de las columnas y añadirlos al modelo
+                    for (int i = 0; i < columnCount; i++) {
+                        model.addColumn(columnas[i]);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error al añadir columnas al modelo: " + e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Error al añadir columnas al modelo: " + e.getMessage());
+                    e.printStackTrace();
+                }
+
+                try {
+                    // Obtener los datos de las filas y añadirlos al modelo
+                    while (rs.next()) {
+                        Object[] rowData = new Object[columnCount];
+                        for (int i = 1; i <= columnCount; i++) {
+                            if (seleccion.equals("ImgPeliculas") && i == 3) { // Columna de la imagen es la tercera (índice 2)
+                                byte[] imageData = rs.getBytes(i);
+                                if (imageData != null) {
+                                    ImageIcon imageIcon = new ImageIcon(imageData);
+                                    rowData[i - 1] = imageIcon;
+                                } else {
+                                    rowData[i - 1] = null;
+                                }
+                            } else {
+                                rowData[i - 1] = rs.getObject(i);
+                            }
+                        }
+                        model.addRow(rowData);
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Error al obtener los datos de las filas: " + e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Error al obtener los datos de las filas: " + e.getMessage());
+                    e.printStackTrace();
+                }
+
+                // Establecer el modelo en el JTable
+                IDVisu.setModel(model);
+
+                // Configurar el renderizador de imágenes si se seleccionó "ImgPeliculas"
+                if (seleccion.equals("ImgPeliculas")) {
+                    TableColumnModel columnModel = IDVisu.getColumnModel();
+                    TableColumn imageColumn = columnModel.getColumn(2); // La columna de imagen es la tercera (índice 2)
+                    imageColumn.setCellRenderer(new ImageCellRenderer());
+
+                    // Ajustar el ancho de la columna para que se ajuste a las imágenes redimensionadas
+                    imageColumn.setPreferredWidth(ImageCellRenderer.IMAGE_WIDTH + 10);
+
+                    // Ajustar la altura de las filas para acomodar las imágenes
+                    int rowHeight = ImageCellRenderer.IMAGE_HEIGHT + 10; // Ajusta este valor según sea necesario
+                    IDVisu.setRowHeight(rowHeight);
+
+                    // Actualizar el JTable
+                    IDVisu.revalidate();
+                    IDVisu.repaint();
+                }
+
+                IdTabla.setText("");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al ejecutar la consulta SQL");
-            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta SQL: "+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta SQL: " + e.getMessage());
         }
     }
+
 
     /**
      * Inicializa el Jframe
@@ -452,5 +522,31 @@ public class MenuAdministrador extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,400);
         setVisible(true);
+    }
+}
+
+// Renderizador de celdas para mostrar imágenes
+class ImageCellRenderer extends DefaultTableCellRenderer {
+
+    public static final int IMAGE_WIDTH = 200; // Ancho deseado de la imagen
+    public static final int IMAGE_HEIGHT = 300; // Alto deseado de la imagen
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        if (value instanceof ImageIcon) {
+            ImageIcon imageIcon = (ImageIcon) value;
+            Image image = imageIcon.getImage();
+
+            // Redimensionar la imagen
+            Image resizedImage = image.getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH);
+            ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+            // Usar JLabel para mostrar la imagen redimensionada
+            JLabel label = new JLabel(resizedIcon);
+            label.setHorizontalAlignment(JLabel.CENTER);
+            return label;
+        } else {
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        }
     }
 }

@@ -100,6 +100,7 @@
                             <item value="Estadisticas"/>
                             <item value="Asientos_Reservas"/>
                             <item value="Asientos"/>
+                            <item value="ImgPeliculas"/>
                           </model>
                         </properties>
                       </component>
@@ -180,6 +181,7 @@
                             <item value="Estadisticas"/>
                             <item value="Asientos_Reservas"/>
                             <item value="Asientos"/>
+                            <item value="ImgPeliculas"/>
                           </model>
                         </properties>
                       </component>
@@ -333,6 +335,11 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <defaultCapable value="false"/>
+          <focusPainted value="false"/>
+          <focusable value="false"/>
           <icon value="img_ProyectoFinal/cerrar-sesionReSize.png"/>
           <text value=""/>
         </properties>
